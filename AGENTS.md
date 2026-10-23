@@ -8,3 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+- All site copy lives in src/lib/i18n.tsx (PT/ES/EN/DE dictionaries typed from PT); never hardcode visible text in components so every language stays complete.
