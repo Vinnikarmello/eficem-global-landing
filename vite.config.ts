@@ -6,6 +6,10 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// Set fallback preview host for local development so /__l5e/ assets proxy to Lovable's CDN
+process.env["LOVABLE_PREVIEW_HOST"] =
+  process.env["LOVABLE_PREVIEW_HOST"] || "171dc05b-49a0-4ec2-ae43-2aac86923992.lovableproject.com";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).

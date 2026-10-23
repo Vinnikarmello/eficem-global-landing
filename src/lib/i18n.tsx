@@ -9,13 +9,13 @@ export const LANGS: { code: Lang; label: string; html: string }[] = [
 ];
 
 const pt = {
-  nav: { home: "Início", about: "Sobre Nós", project: "Projeto", achievements: "Conquistas", gallery: "Galeria", sponsor: "Seja Patrocinador", menu: "Menu", lang: "Idioma" },
+  nav: { home: "Início", about: "Sobre", project: "Projeto", achievements: "Conquistas", gallery: "Galeria", sponsor: "Patrocínio", sponsorBtn: "Seja Patrocinador", menu: "Menu", lang: "Idioma" },
   hero: {
-    kicker: "UFSC Joinville · Shell Eco-marathon",
+    kicker: "Engenharia / Inovação / Sustentabilidade",
     title: "Equipe de eficiência energética veicular da UFSC Joinville.",
     sub: "Projetamos, construímos e evoluímos protótipos que percorrem a maior distância com o mínimo de energia.",
-    cta: "Quero Apoiar",
-    cta2: "Conhecer protótipo",
+    cta: "Conhecer Protótipo",
+    cta2: "Apoiar a Equipe",
   },
   about: {
     kicker: "Sobre nós",
@@ -73,12 +73,12 @@ const pt = {
 export type Dict = typeof pt;
 
 const es: Dict = {
-  nav: { home: "Inicio", about: "Nosotros", project: "Proyecto", achievements: "Logros", gallery: "Galería", sponsor: "Sé Patrocinador", menu: "Menú", lang: "Idioma" },
+  nav: { home: "Inicio", about: "Sobre", project: "Proyecto", achievements: "Logros", gallery: "Galería", sponsor: "Patrocinio", sponsorBtn: "Sé Patrocinador", menu: "Menú", lang: "Idioma" },
   hero: {
-    kicker: "UFSC Joinville · Shell Eco-marathon",
+    kicker: "Ingeniería / Innovación / Sostenibilidad",
     title: "Equipo de eficiencia energética vehicular de la UFSC Joinville.",
     sub: "Diseñamos, construimos y evolucionamos prototipos que recorren la mayor distancia con el mínimo de energía.",
-    cta: "Quiero Apoyar", cta2: "Conocer el prototipo",
+    cta: "Conocer el Prototipo", cta2: "Apoyar al Equipo",
   },
   about: {
     kicker: "Nosotros", title: "Más que un equipo, un propósito.",
@@ -124,12 +124,12 @@ const es: Dict = {
 };
 
 const en: Dict = {
-  nav: { home: "Home", about: "About Us", project: "Project", achievements: "Achievements", gallery: "Gallery", sponsor: "Become a Sponsor", menu: "Menu", lang: "Language" },
+  nav: { home: "Home", about: "About", project: "Project", achievements: "Achievements", gallery: "Gallery", sponsor: "Sponsorship", sponsorBtn: "Become a Sponsor", menu: "Menu", lang: "Language" },
   hero: {
-    kicker: "UFSC Joinville · Shell Eco-marathon",
+    kicker: "Engineering / Innovation / Sustainability",
     title: "UFSC Joinville's vehicle energy-efficiency team.",
     sub: "We design, build and evolve prototypes that travel the farthest distance on the least energy.",
-    cta: "I Want to Support", cta2: "Meet the prototype",
+    cta: "Meet Prototype", cta2: "Support the Team",
   },
   about: {
     kicker: "About us", title: "More than a team, a purpose.",
@@ -175,12 +175,12 @@ const en: Dict = {
 };
 
 const de: Dict = {
-  nav: { home: "Start", about: "Über uns", project: "Projekt", achievements: "Erfolge", gallery: "Galerie", sponsor: "Sponsor werden", menu: "Menü", lang: "Sprache" },
+  nav: { home: "Start", about: "Über uns", project: "Projekt", achievements: "Erfolge", gallery: "Galerie", sponsor: "Sponsoring", sponsorBtn: "Sponsor werden", menu: "Menü", lang: "Sprache" },
   hero: {
-    kicker: "UFSC Joinville · Shell Eco-marathon",
+    kicker: "Ingenieurwesen / Innovation / Nachhaltigkeit",
     title: "Das Fahrzeug-Energieeffizienzteam der UFSC Joinville.",
     sub: "Wir entwerfen, bauen und entwickeln Prototypen, die mit minimaler Energie die größte Distanz zurücklegen.",
-    cta: "Jetzt unterstützen", cta2: "Prototyp entdecken",
+    cta: "Prototyp entdecken", cta2: "Team unterstützen",
   },
   about: {
     kicker: "Über uns", title: "Mehr als ein Team – eine Mission.",

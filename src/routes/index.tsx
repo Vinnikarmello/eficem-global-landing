@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Menu, X, Ruler, MoveVertical, Weight, Instagram, Mail, MapPin, Download, ArrowRight } from "lucide-react";
 import { I18nProvider, LANGS, useI18n } from "@/lib/i18n";
-import hero from "@/assets/hero.png.asset.json";
 import inspection from "@/assets/inspection.jpg.asset.json";
 import track1 from "@/assets/track-1.jpg.asset.json";
 import track2 from "@/assets/track-2.jpg.asset.json";
@@ -56,60 +55,123 @@ function Kicker({ children, dark = false }: { children: React.ReactNode; dark?: 
 const btn = "clip-btn inline-flex items-center justify-center gap-2 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide transition-colors";
 const btnGreen = `${btn} bg-green text-carbon hover:bg-green-deep`;
 const btnOutline = `${btn} border-2 border-carbon text-carbon hover:bg-carbon hover:text-carbon-foreground`;
+const btnPurpleOutline = `${btn} border-2 border-purple text-purple bg-surface/80 hover:bg-purple hover:text-purple-foreground`;
 
 function Header() {
   const { t, lang, setLang } = useI18n();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 10);
+    const f = () => setScrolled(window.scrollY > 20);
     f();
     window.addEventListener("scroll", f);
     return () => window.removeEventListener("scroll", f);
   }, []);
-  const links: [string, string][] = [["#inicio", t.nav.home], ["#sobre", t.nav.about], ["#projeto", t.nav.project], ["#conquistas", t.nav.achievements], ["#galeria", t.nav.gallery]];
+
+  const links: [string, string][] = [
+    ["#sobre", t.nav.about],
+    ["#projeto", t.nav.project],
+    ["#conquistas", t.nav.achievements],
+    ["#galeria", t.nav.gallery],
+    ["#patrocinio", t.nav.sponsor],
+  ];
+
   const Switch = (
-    <div role="group" aria-label={t.nav.lang} className="flex border border-carbon/20">
+    <div role="group" aria-label={t.nav.lang} className="flex border border-carbon/20 bg-surface/70 backdrop-blur-xs">
       {LANGS.map((l) => (
-        <button key={l.code} onClick={() => setLang(l.code)} aria-pressed={lang === l.code}
-          className={`px-2 py-1 font-mono text-xs font-bold ${lang === l.code ? "bg-purple text-purple-foreground" : "text-carbon hover:bg-muted"}`}>
+        <button
+          key={l.code}
+          onClick={() => setLang(l.code)}
+          aria-pressed={lang === l.code}
+          className={`px-2 py-1 font-mono text-xs font-bold transition-colors ${
+            lang === l.code ? "bg-purple text-purple-foreground" : "text-carbon hover:bg-muted"
+          }`}
+        >
           {l.label}
         </button>
       ))}
     </div>
   );
+
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-shadow ${scrolled ? "header-glass shadow-md" : "bg-surface/90"}`}>
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
-        <a href="#inicio" className="flex shrink-0 items-center gap-2 text-green">
-          <Logo className="h-8 w-8" />
-          <span className="font-display text-xl font-bold tracking-tight text-carbon">EFICEM</span>
-        </a>
-        <nav className="hidden items-center gap-6 lg:flex">
-          {links.map(([h, l]) => (
-            <a key={h} href={h} className="font-display text-sm font-semibold uppercase text-carbon hover:text-purple">{l}</a>
-          ))}
-        </nav>
-        <div className="flex min-w-0 items-center gap-3">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-surface/95 shadow-md backdrop-blur-md" : "bg-transparent"
+      }`}
+    >
+      {/* On desktop and not scrolled: white angular plate behind logo & nav */}
+      {!scrolled && (
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 hidden bg-surface lg:block"
+          style={{
+            width: "calc((100vw - 1280px) / 2 + 760px)",
+            minWidth: "690px",
+            clipPath: "polygon(0 0, 100% 0, calc(100% - 36px) 100%, 0 100%)",
+          }}
+        />
+      )}
+      {/* On mobile and not scrolled: clean translucent backdrop */}
+      {!scrolled && (
+        <div className="pointer-events-none absolute inset-0 bg-surface/90 shadow-sm backdrop-blur-sm lg:hidden" />
+      )}
+
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+        <div className="flex items-center gap-8">
+          <a href="#inicio" className="flex shrink-0 items-center gap-2.5 text-green">
+            <Logo className="h-9 w-9" />
+            <span className="font-display text-2xl font-black tracking-tight text-carbon">EFICEM</span>
+          </a>
+          <nav className="hidden items-center gap-7 lg:flex">
+            {links.map(([h, l]) => (
+              <a
+                key={h}
+                href={h}
+                className="font-display text-sm font-bold uppercase tracking-wide text-carbon/90 hover:text-purple transition-colors"
+              >
+                {l}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div className="relative z-10 flex min-w-0 items-center gap-3">
           <div className="hidden sm:block">{Switch}</div>
-          <div className="hidden md:block"><a href="#patrocinio" className={`${btnGreen} px-4 py-2`}>{t.nav.sponsor}</a></div>
-          <button className="p-2 text-carbon lg:hidden" onClick={() => setOpen(!open)} aria-label={t.nav.menu} aria-expanded={open}>
+          <div className="hidden md:block">
+            <a href="#patrocinio" className={`${btnGreen} px-5 py-2.5`}>
+              {t.nav.sponsorBtn} <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+          <button
+            className="p-2 text-carbon lg:hidden"
+            onClick={() => setOpen(!open)}
+            aria-label={t.nav.menu}
+            aria-expanded={open}
+          >
             {open ? <X /> : <Menu />}
           </button>
         </div>
       </div>
+
       {open && (
-        <div className="border-t border-border bg-surface px-4 pb-6 pt-2 lg:hidden">
+        <div className="border-t border-border bg-surface px-4 pb-6 pt-2 lg:hidden shadow-lg">
           <nav className="flex flex-col">
             {links.map(([h, l]) => (
-              <a key={h} href={h} onClick={() => setOpen(false)} className="flex items-center gap-3 border-b border-border py-3 font-display font-semibold uppercase text-carbon">
-                <span className="clip-v h-2.5 w-2.5 bg-green" />{l}
+              <a
+                key={h}
+                href={h}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 border-b border-border py-3 font-display font-semibold uppercase text-carbon"
+              >
+                <span className="clip-v h-2.5 w-2.5 bg-green" />
+                {l}
               </a>
             ))}
           </nav>
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <div className="sm:hidden">{Switch}</div>
-            <a href="#patrocinio" onClick={() => setOpen(false)} className={btnGreen}>{t.nav.sponsor}</a>
+            <a href="#patrocinio" onClick={() => setOpen(false)} className={btnGreen}>
+              {t.nav.sponsorBtn} <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       )}
@@ -120,29 +182,50 @@ function Header() {
 function Hero() {
   const { t } = useI18n();
   return (
-    <section id="inicio" className="relative overflow-hidden bg-ice pt-16">
-      <div className="clip-slash-thin pointer-events-none absolute inset-y-0 right-0 hidden w-full bg-purple lg:block" />
-      <div className="pointer-events-none absolute right-0 top-16 hidden h-40 w-40 clip-v bg-green/80 lg:block" />
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:items-center">
-        <div className="min-w-0">
-          <Kicker>{t.hero.kicker}</Kicker>
-          <h1 className="mt-4 text-5xl font-bold uppercase leading-none tracking-tight text-carbon sm:text-6xl lg:text-7xl">
-            EFICEM <span className="text-green">—</span>
-          </h1>
-          <p className="mt-3 max-w-xl font-display text-xl font-semibold uppercase leading-tight text-purple sm:text-2xl">{t.hero.title}</p>
-          <p className="mt-5 max-w-lg text-base text-muted-foreground sm:text-lg">{t.hero.sub}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#patrocinio" className={btnGreen}>{t.hero.cta} <ArrowRight className="h-4 w-4" /></a>
-            <a href="#projeto" className={btnOutline}>{t.hero.cta2}</a>
+    <section
+      id="inicio"
+      className="relative flex min-h-[480px] sm:min-h-[520px] md:min-h-[560px] lg:min-h-[580px] xl:min-h-[640px] w-full items-center overflow-hidden bg-surface"
+    >
+      {/* Background Image passing underneath header */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/imagem%20do%20hero%20section.png"
+          alt="EFICEM UFSC Joinville Protótipo Shell Eco-marathon"
+          className="h-full w-full object-cover object-left"
+        />
+        {/* Mobile/tablet gradient overlay for text readability on small viewports */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent sm:via-surface/40 md:hidden" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 pb-12 sm:px-6 md:pt-28 lg:pt-28 lg:pb-16">
+        <div className="max-w-md sm:max-w-lg lg:max-w-xl">
+          <div className="flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="h-1.5 w-6 bg-green shrink-0" />
+            <span>{t.hero.kicker}</span>
           </div>
-          <p className="chevrons mt-10 text-2xl" aria-hidden>{">>>>"}</p>
-        </div>
-        <div className="relative min-w-0">
-          <img src={hero.url} alt="EFICEM" className="clip-poly-b relative z-10 aspect-[16/7] w-full object-cover lg:aspect-[4/3]" />
-          <div className="absolute -bottom-3 -left-3 z-0 h-full w-full border-2 border-green" aria-hidden />
+
+          <h1 className="mt-4 font-display text-5xl font-black uppercase leading-none tracking-tight text-carbon sm:text-6xl md:text-7xl lg:text-8xl">
+            EFICEM
+          </h1>
+
+          <p className="mt-4 max-w-lg font-sans text-xl font-bold leading-snug text-carbon sm:text-2xl">
+            {t.hero.title}
+          </p>
+
+          <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {t.hero.sub}
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#projeto" className={btnGreen}>
+              {t.hero.cta} <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href="#patrocinio" className={btnPurpleOutline}>
+              {t.hero.cta2}
+            </a>
+          </div>
         </div>
       </div>
-      <div className="h-6 bg-carbon clip-section-top" />
     </section>
   );
 }
