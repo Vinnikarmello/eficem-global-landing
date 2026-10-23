@@ -238,7 +238,7 @@ function Achievements() {
             ))}
           </ol>
           <figure className="min-w-0 self-start lg:sticky lg:top-24">
-            <img src={fourth.url} alt={items[items.length - 1][2]} loading="lazy" className="clip-card mx-auto w-full max-w-sm border-4 border-green object-cover" />
+            <img src={fourth.url} alt={items[items.length - 1]?.[2] ?? ""} loading="lazy" className="clip-card mx-auto w-full max-w-sm border-4 border-green object-cover" />
           </figure>
         </div>
       </div>
