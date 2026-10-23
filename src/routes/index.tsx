@@ -92,7 +92,7 @@ function Header() {
         </nav>
         <div className="flex min-w-0 items-center gap-3">
           <div className="hidden sm:block">{Switch}</div>
-          <a href="#patrocinio" className={`${btnGreen} hidden px-4 py-2 md:inline-flex`}>{t.nav.sponsor}</a>
+          <div className="hidden md:block"><a href="#patrocinio" className={`${btnGreen} px-4 py-2`}>{t.nav.sponsor}</a></div>
           <button className="p-2 text-carbon lg:hidden" onClick={() => setOpen(!open)} aria-label={t.nav.menu} aria-expanded={open}>
             {open ? <X /> : <Menu />}
           </button>
