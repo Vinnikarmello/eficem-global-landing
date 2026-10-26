@@ -461,42 +461,36 @@ function Gallery() {
           <p className="max-w-md text-muted-foreground">{t.gallery.sub}</p>
         </div>
         <div className="mt-10 grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[220px] md:grid-cols-4">
-          <img
-            src={track2.url}
-            alt={a[0]}
-            loading="lazy"
-            className="col-span-2 row-span-2 h-full w-full object-cover"
-          />
-          <img
-            src={track3.url}
-            alt={a[1]}
-            loading="lazy"
-            className="col-span-1 h-full w-full object-cover"
-          />
           <video
             src={video.url}
             aria-label={a[3]}
-            className="col-span-1 row-span-2 h-full w-full bg-carbon object-cover"
+            className="col-span-2 row-span-2 h-full w-full bg-carbon object-cover"
             autoPlay
             muted
             loop
             playsInline
           />
           <img
-            src={teamCar.url}
+            src={track3.url}
             alt={a[2]}
             loading="lazy"
             className="col-span-1 h-full w-full object-cover"
           />
           <img
-            src={inspection.url}
-            alt={a[4]}
-            loading="lazy"
-            className="clip-card col-span-1 h-full w-full object-cover md:col-span-2"
-          />
-          <img
             src={track1.url}
             alt={a[5]}
+            loading="lazy"
+            className="col-span-1 h-full w-full object-cover md:col-span-1"
+          />
+          <img
+            src={teamCar.url}
+            alt={a[1]}
+            loading="lazy"
+            className="clip-card col-span-2 row-span-2 h-full w-full object-cover"
+          />
+          <img
+            src={inspection.url}
+            alt={a[4]}
             loading="lazy"
             className="col-span-1 h-full w-full object-cover md:col-span-2"
           />
@@ -512,7 +506,7 @@ function Partners() {
   return (
     <section className="bg-purple text-purple-foreground">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-green">
+        <p className="font-mono uppercase tracking-[0.2em] text-green">
           {t.partners.title}
         </p>
         <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
