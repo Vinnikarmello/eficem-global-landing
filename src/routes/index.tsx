@@ -165,7 +165,7 @@ function Header() {
           className="pointer-events-none absolute inset-y-0 left-0 hidden bg-surface lg:block"
           style={{
             width: "calc((100vw - 1280px) / 2 + 760px)",
-            minWidth: "690px",
+            minWidth: "735px",
             clipPath: "polygon(0 0, 100% 0, calc(100% - 50px) 100%, 0 100%)",
           }}
         />
