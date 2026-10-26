@@ -1,12 +1,11 @@
-import path from "path";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Lang = "pt" | "es" | "en" | "de";
 export const LANGS: { code: Lang; img: string; html: string }[] = [
-  { code: "pt", img: "../public/pt.png", html: "pt-BR" },
-  { code: "es", img: "../public/es.png", html: "es" },
-  { code: "en", img: "../public/en.png", html: "en" },
-  { code: "de", img: "../public/de.png", html: "de" },
+  { code: "pt", img: "/pt.png", html: "pt-BR" },
+  { code: "es", img: "/es.png", html: "es" },
+  { code: "en", img: "/en.png", html: "en" },
+  { code: "de", img: "/de.png", html: "de" },
 ];
 
 const pt = {
