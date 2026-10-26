@@ -454,13 +454,13 @@ function Gallery() {
     <section id="galeria" className="bg-ice py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Kicker>{t.gallery.kicker}</Kicker>
-        <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div className="mt-4 flex flex-col gap-3 md:flex-col">
           <h2 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
             {t.gallery.title}
           </h2>
           <p className="max-w-md text-muted-foreground">{t.gallery.sub}</p>
         </div>
-        <div className="mt-10 grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[220px] md:grid-cols-4">
+        <div className="mt-8 grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[220px] md:grid-cols-4">
           <video
             src={video.url}
             aria-label={a[3]}
@@ -615,7 +615,7 @@ function Footer() {
   return (
     <footer className="relative bg-carbon text-carbon-foreground">
       <div className="clip-v mx-auto h-6 w-24 bg-green" aria-hidden />
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1fr_0.8fr_1fr_1.6fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1fr_0.6fr_1fr_1.6fr]">
         <div className="min-w-0">
           <div className="flex items-center gap-2 text-green">
             <Logo className="h-9 w-9" />
@@ -623,21 +623,23 @@ function Footer() {
           </div>
           <p className="mt-4 text-sm text-carbon-foreground/70">{t.footer.tagline}</p>
         </div>
-        <div>
-          <h3 className="font-mono text-xs uppercase tracking-widest text-green">
-            {t.footer.links}
-          </h3>
-          <ul className="mt-4 space-y-2 text-sm">
-            {links.map(([h, l]) => (
-              <li key={h}>
-                <a href={h} className="text-carbon-foreground/80 hover:text-green">
-                  {l}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="sm:flex  sm:justify-center sm:row-span-2 md:row-span-1 md:justify-start">
+          <div className="sm:text-start w-max">
+              <h3 className="font-mono text-xs uppercase tracking-widest text-green">
+              {t.footer.links}
+            </h3>
+            <ul className="mt-4 space-y-2 text-sm">
+              {links.map(([h, l]) => (
+                <li key={h}>
+                  <a href={h} className="text-carbon-foreground/80 hover:text-green">
+                    {l}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="min-w-0">
+        <div className="min-w-0 sm:mt-5 md:mt-0">
           <h3 className="font-mono text-xs uppercase tracking-widest text-green">
             {t.footer.social}
           </h3>
