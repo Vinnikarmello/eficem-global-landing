@@ -65,7 +65,7 @@ export function LanguageSwitch() {
         <button
           type="button"
           onClick={() => setActiveMenu(activeMenu === "lang" ? null : "lang")}
-          className="flex items-center p-2 rounded hover:bg-surface-hover transition-colors"
+          className="flex items-center p-2 rounded hover:bg-muted transition-colors"
         >
           <img src={LANGS.find((l) => l.code === lang)?.img || ""} alt={lang} className="h-6 w-6" />
         </button>
@@ -80,7 +80,7 @@ export function LanguageSwitch() {
                     setActiveMenu(null); // Closes menu after picking a language
                   }}
                   aria-pressed={lang === l.code}
-                  className={`py-2 flex items-center gap-2 hover:bg-surface-hover transition-colors ${
+                  className={`py-2 flex items-center gap-2 hover:bg-muted transition-colors ${
                     lang === l.code ? "hidden" : ""
                   }`}
                 >
