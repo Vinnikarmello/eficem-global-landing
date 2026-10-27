@@ -65,11 +65,6 @@ const pt = {
         "Combustão V12",
         "Protótipo a gasolina V12: 10º na MUEE, prêmio de 3º melhor projeto e cerca de 119,6 km/l.",
       ],
-      [
-        "2015",
-        "Setta, o mais leve",
-        "O Setta é o protótipo mais leve da Shell Eco-marathon Brasil, com 24 kg.",
-      ],
       ["2016", "Primeira SEMB", "Setta: o mais leve da edição (21,5 kg) e 5º lugar geral."],
       [
         "2017",
@@ -195,11 +190,6 @@ const es: Dict = {
         "Combustión V12",
         "Prototipo a gasolina V12: 10.º en la MUEE, premio al 3.er mejor proyecto y cerca de 119,6 km/l.",
       ],
-      [
-        "2015",
-        "Setta, el más ligero",
-        "El Setta es el prototipo más ligero de la Shell Eco-marathon Brasil, con 24 kg.",
-      ],
       ["2016", "Primera SEMB", "Setta: el más ligero de la edición (21,5 kg) y 5.º lugar general."],
       [
         "2017",
@@ -324,11 +314,6 @@ const en: Dict = {
         "V12 Combustion",
         "Gasoline V12 prototype: 10th at MUEE, 3rd best project award and about 119.6 km/l.",
       ],
-      [
-        "2015",
-        "Setta, the lightest",
-        "Setta is the lightest prototype at Shell Eco-marathon Brazil, at 24 kg.",
-      ],
       ["2016", "First SEMB", "Setta: lightest of the edition (21.5 kg) and 5th overall."],
       [
         "2017",
@@ -452,11 +437,6 @@ const de: Dict = {
         "2013",
         "V12-Verbrenner",
         "Benzin-V12-Prototyp: 10. Platz bei der MUEE, Preis für das drittbeste Projekt und rund 119,6 km/l.",
-      ],
-      [
-        "2015",
-        "Setta, der leichteste",
-        "Der Setta ist mit 24 kg der leichteste Prototyp des Shell Eco-marathon Brasilien.",
       ],
       ["2016", "Erste SEMB", "Setta: der leichteste der Ausgabe (21,5 kg) und 5. Platz gesamt."],
       [

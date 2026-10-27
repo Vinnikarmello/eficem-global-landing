@@ -17,7 +17,6 @@ import {
 import { I18nProvider, LANGS, useI18n } from "@/lib/i18n";
 import inspection from "@/assets/inspection.jpg.asset.json";
 import track1 from "@/assets/track-1.jpg.asset.json";
-import track2 from "@/assets/track-2.jpg.asset.json";
 import track3 from "@/assets/track-3.jpg.asset.json";
 import team from "@/assets/team.jpg.asset.json";
 import teamCar from "@/assets/team-car.jpg.asset.json";
@@ -201,7 +200,10 @@ function Hero() {
       id="inicio"
       className="relative flex min-h-[480px] sm:min-h-[520px] md:min-h-[560px] lg:min-h-[580px] xl:min-h-[640px] w-full items-center overflow-hidden bg-ice"
     >
-      <div className="absolute inset-y-0 -right-5 lg:block z-0 bg-ice" style={{width: "60%", height: "100%"}}>
+      <div
+        className="absolute inset-y-0 -right-5 lg:block z-0 bg-ice"
+        style={{ width: "60%", height: "100%" }}
+      >
         <div
           className="absolute inset-0 bg-green"
           style={{
@@ -212,10 +214,9 @@ function Hero() {
         <div
           className="absolute inset-0"
           style={{
-            clipPath: "polygon(140px 0%, 100% 0%, 100% 100%, 0% 100%)"
+            clipPath: "polygon(140px 0%, 100% 0%, 100% 100%, 0% 100%)",
           }}
         >
-
           <img
             src={track1.url}
             alt="EFICEM UFSC Joinville Protótipo Shell Eco-marathon"
@@ -369,12 +370,11 @@ function Project() {
 const ACH_IMAGES = [
   team.url, // 2012
   "/eficem/combustao.jpg", // 2013 — protótipo à combustão (site oficial)
-  track1.url, // 2015
-  track2.url, // 2016
+  "/eficem/setta2016.jpg", // 2016 — Setta nº 312 na Shell Eco-marathon
   track3.url, // 2017
   inspection.url, // 2019
   teamCar.url, // 2021
-  chassis.url, // 2022
+  "/eficem/safety2022.jpg", // 2022 — Safety Award na Shell Eco-marathon Brasil
   "/eficem/eletrico.jpg", // 2023 — protótipo elétrico (site oficial)
   fourth.url, // 2026
 ];
