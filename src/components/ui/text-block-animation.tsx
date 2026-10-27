@@ -3,6 +3,7 @@ import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef, type ReactNode } from "react";
+import { useI18n } from "@/lib/i18n";
 
 type TextBlockAnimationProps = {
   children: ReactNode;
@@ -13,7 +14,15 @@ type TextBlockAnimationProps = {
   duration?: number;
 };
 
-export default function TextBlockAnimation({
+export default function TextBlockAnimation(props: TextBlockAnimationProps) {
+  const { lang } = useI18n();
+
+  // SplitText owns the animated DOM. Recreate it for each language so its
+  // saved original markup cannot overwrite React's newly translated text.
+  return <AnimatedTextBlock key={lang} {...props} />;
+}
+
+function AnimatedTextBlock({
   children,
   animateOnScroll = true,
   delay = 0,
@@ -83,12 +92,15 @@ export default function TextBlockAnimation({
         );
 
       return () => {
+        tl.kill();
+        tl.scrollTrigger?.kill();
         split.revert();
       };
     },
     {
       scope: containerRef,
       dependencies: [animateOnScroll, delay, blockColor, stagger, duration],
+      revertOnUpdate: true,
     },
   );
 

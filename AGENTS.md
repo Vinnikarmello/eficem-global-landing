@@ -9,3 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 - All site copy lives in src/lib/i18n.tsx (PT/ES/EN/DE dictionaries typed from PT); never hardcode visible text in components so every language stays complete.
+- SplitText animation instances must be keyed by the active language and clean up their timeline, scroll trigger, and split markup; recreating their DOM prevents stale titles after language changes.
