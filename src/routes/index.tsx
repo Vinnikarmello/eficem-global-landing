@@ -95,7 +95,7 @@ function Kicker({ children, dark = false }: { children: React.ReactNode; dark?: 
 const btn =
   "clip-btn inline-flex items-center justify-center gap-2 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide transition-colors";
 const btnGreen = `${btn} bg-green text-carbon hover:bg-green-deep`;
-const btnPurpleOutline = `${btn} border-2 border-purple text-purple bg-surface/80 hover:bg-purple hover:text-purple-foreground`;
+const btnPurpleOutline = `${btn} border-2 border-purple bg-purple text-purple-foreground hover:bg-purple/85`;
 
 function ThemeToggle() {
   const [dark, setDark] = useState(false);
@@ -162,19 +162,19 @@ function Header() {
       <div
         className="pointer-events-none absolute inset-y-0 left-0 bg-carbon"
         style={{
-          width: "max(210px, calc((100vw - 1280px) / 2 + 220px))",
-          clipPath: "polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%)",
+          width: "max(160px, calc((100vw - 1280px) / 2 + 167px))",
+          clipPath: "polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)",
         }}
       />
       <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
-        <div className="flex items-center gap-8 lg:gap-16">
+        <div className="flex items-center gap-8">
           <a href="#inicio" className="flex shrink-0 items-center gap-2.5 text-green">
             <Logo className="h-9 w-9" />
             <span className="font-display text-2xl font-black tracking-tight text-carbon-foreground">
               EFICEM
             </span>
           </a>
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-8 lg:flex">
             {links.map(([h, l]) => (
               <a
                 key={h}
@@ -237,20 +237,8 @@ function Header() {
   );
 }
 
-const HERO_IMAGES = [
-  "/eficem/equipe2025.jpg",
-  "/eficem/safety2022.jpg",
-  "/eficem/setta2017.jpg",
-  "/eficem/eletropig2023.jpg",
-];
-
 function Hero() {
   const { t } = useI18n();
-  const [heroIdx, setHeroIdx] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setHeroIdx((i) => (i + 1) % HERO_IMAGES.length), 5000);
-    return () => clearInterval(id);
-  }, []);
   return (
     <section
       id="inicio"
@@ -273,20 +261,15 @@ function Hero() {
             clipPath: "polygon(140px 0%, 100% 0%, 100% 100%, 0% 100%)",
           }}
         >
-          {HERO_IMAGES.map((src, i) => (
-            <img
-              key={src}
-              src={src}
-              alt="EFICEM UFSC Joinville — equipe e protótipos"
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
-                i === heroIdx ? "opacity-100" : "opacity-0"
-              }`}
-              style={{
-                clipPath: "polygon(300px 0, 100% 0, 100% 100%, 0 100%)",
-                objectPosition: "center",
-              }}
-            />
-          ))}
+          <img
+            src="/eficem/hero.jpg"
+            alt="EFICEM UFSC Joinville — protótipo na pista"
+            className="h-full w-full object-cover"
+            style={{
+              clipPath: "polygon(300px 0, 100% 0, 100% 100%, 0 100%)",
+              objectPosition: "center",
+            }}
+          />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent sm:via-surface/40 md:hidden" />
         </div>
       </div>
@@ -390,7 +373,11 @@ function Project() {
             src="/logo.png"
             alt=""
             aria-hidden
-            className="pointer-events-none mx-auto mt-8 h-32 w-32 opacity-90 sm:h-48 sm:w-48"
+            className="pointer-events-none mx-auto mt-4 h-48 w-48 opacity-20 sm:h-64 sm:w-64"
+            style={{
+              maskImage: "linear-gradient(to bottom, black 25%, transparent)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 25%, transparent)",
+            }}
           />
         </div>
         <div className="order-1 min-w-0 lg:order-2">

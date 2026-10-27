@@ -73,7 +73,13 @@
   --muted-foreground: oklch(0.72 0.015 270);
   --border: oklch(0.33 0.012 270);
   --input: oklch(0.3 0.012 270);
+  --purple: oklch(0.62 0.2 292);
   color-scheme: dark;
+}
+
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] h2 {
+  color: var(--purple);
 }
 
 @layer base {
