@@ -139,7 +139,7 @@ function ThemeFab({
   label: string;
 }) {
   return (
-    <div className="pointer-events-none fixed right-2 top-[88px] z-40 hidden md:block">
+    <div className="pointer-events-none fixed right-3 top-[88px] z-40 hidden md:block">
       <div className="pointer-events-auto drop-shadow-lg">
         <button
           type="button"
@@ -202,16 +202,15 @@ function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-surface transition-shadow duration-300 ${
-        scrolled ? "shadow-md" : "shadow-sm"
+      className={`fixed  inset-x-0 top-0 z-50 md:bg-surface sm:bg-transparent transition-shadow duration-300 ${
+        scrolled ? "shadow-md sm:backdrop-blur-md" : "md:shadow-sm"
       }`}
     >
-      {/* Placa escura angular atrás da logo + wordmark EFICEM, para contraste */}
       <div
         className="pointer-events-none absolute left-0 top-0 h-20 bg-purple"
         style={{
-          width: "max(180px, calc((100vw - 1280px) / 2 + 167px))",
-          clipPath: "polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)",
+          width: "max(190px, calc((100vw - 1280px) / 2 + 167px))",
+          clipPath: "polygon(0 0, 100% 0, calc(100% - 40px) 100%, 0 100%)",
         }}
       />
       <div className="rise-in relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
@@ -226,7 +225,7 @@ function Header() {
               EFICEM
             </span>
           </a>
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-[2vw] lg:flex">
             {links.map(([h, l]) => (
               <a
                 key={h}
@@ -308,9 +307,9 @@ function Hero() {
             clipPath: "polygon(270px 0%, 100% 0%, 100% 50px, 65px 350px)",
           }}
         />
-
+        
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 object-cover sm:-right-30"
           style={{
             clipPath: "polygon(140px 0%, 100% 0%, 100% 100%, 0% 100%)",
           }}
@@ -324,7 +323,14 @@ function Hero() {
               objectPosition: "center",
             }}
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent sm:via-surface/40 md:hidden" />
+          <div
+          className="absolute inset-0 bg-purple hidden lg:block"
+          style={{
+            clipPath: "polygon(57vw 0%, 47vw 100%, 100% 100%, 100% 0%)",
+          }}
+        />
+
+          <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r from-ice via-ice/90 to-transparent sm:via-ice/40 ${window.innerWidth <= 898 ? 'block' : 'hidden'}`} />
         </div>
       </div>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 pb-12 sm:px-6 md:pt-28 lg:pt-28 lg:pb-16">
@@ -418,7 +424,7 @@ function Project() {
             src="/eficem/projeto.jpg"
             alt={t.project.cap}
             loading="lazy"
-            className="clip-card aspect-[4/5] max-h-[620px] w-full object-cover"
+            className="clip-card aspect-[4/5] max-h-[620px] w-full object-cover object-bottom"
           />
           <figcaption className="absolute left-0 top-0 bg-carbon px-3 py-2 font-mono text-xs uppercase text-carbon-foreground">
             {t.project.cap}
@@ -456,9 +462,6 @@ function Project() {
   );
 }
 
-// Imagens por marco (mesma ordem de ach.items). As fotos reais da combustão e
-// do protótipo elétrico vêm do site oficial; os demais anos usam fotos da equipe
-// até termos as fotos históricas específicas de cada época.
 const ACH_IMAGES = [
   "/eficem/logo2012.jpg", // 2012 — logo da equipe
   "/eficem/combustao.jpg", // 2013 — protótipo à combustão (site oficial)
@@ -582,7 +585,7 @@ function Gallery() {
           <video
             src={video.url}
             aria-label={a[3]}
-            className="col-span-2 row-span-2 h-full w-full bg-carbon object-cover"
+            className="col-span-2 row-span-2 h-full w-full bg-carbon object-cover object-right"
             autoPlay
             muted
             loop
@@ -592,19 +595,19 @@ function Gallery() {
             src={track3.url}
             alt={a[2]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-2 hidden md:block lg:col-span-1"
+            className="col-span-1 h-full w-full object-cover"
           />
           <img
             src={track1.url}
             alt={a[5]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-1 hidden lg:block"
+            className="col-span-1 h-full w-full object-cover md:col-span-1 hidden md:block"
           />
           <img
             src={inspection.url}
             alt={a[4]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-2 hidden md:block"
+            className="col-span-1 h-full w-full object-cover md:col-span-2"
           />
           <img
             src={teamCar.url}
@@ -631,7 +634,7 @@ function Partners() {
               key={n}
               className=""
             >
-              <img src={n} alt="" className="h-15 "/>
+              <img src={n} alt="" className="h-15 object-contain" style={{ filter: n === "/fablab.png" ? "invert(100%)" : "none" }} />
             </li>
           ))}
         </ul>
