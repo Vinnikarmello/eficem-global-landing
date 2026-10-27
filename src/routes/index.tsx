@@ -139,22 +139,18 @@ function ThemeFab({
   label: string;
 }) {
   return (
-    <div className="pointer-events-none fixed inset-x-0 top-[88px] hidden md:block">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:pr-[76px] lg:pr-6">
-        <div className="flex justify-end">
-          <div className="pointer-events-auto drop-shadow-lg">
-            <button
-              type="button"
-              onClick={toggle}
-              aria-label={label}
-              title={label}
-              aria-pressed={dark}
-              className="clip-btn flex h-11 w-11 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:bg-green hover:text-carbon"
-            >
-              <ThemeIcon dark={dark} />
-            </button>
-          </div>
-        </div>
+    <div className="pointer-events-none fixed right-0 top-[88px] z-40">
+      <div className="pointer-events-auto drop-shadow-lg">
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label={label}
+          title={label}
+          aria-pressed={dark}
+          className="clip-btn flex h-11 w-11 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:bg-green hover:text-carbon"
+        >
+          <ThemeIcon dark={dark} />
+        </button>
       </div>
     </div>
   );
