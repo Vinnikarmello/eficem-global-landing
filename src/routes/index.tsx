@@ -139,7 +139,7 @@ function ThemeFab({
   label: string;
 }) {
   return (
-    <div className="pointer-events-none fixed right-0 top-[88px] z-40">
+    <div className="pointer-events-none fixed right-2 top-[88px] z-40 hidden md:block">
       <div className="pointer-events-auto drop-shadow-lg">
         <button
           type="button"
@@ -147,7 +147,7 @@ function ThemeFab({
           aria-label={label}
           title={label}
           aria-pressed={dark}
-          className="clip-btn flex h-11 w-11 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:bg-green hover:text-carbon"
+          className="clip-btn flex h-10 w-10 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:bg-green hover:text-carbon"
         >
           <ThemeIcon dark={dark} />
         </button>
