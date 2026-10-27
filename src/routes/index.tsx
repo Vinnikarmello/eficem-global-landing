@@ -11,7 +11,6 @@ import {
   MapPin,
   Download,
   ArrowRight,
-  ArrowDown,
 } from "lucide-react";
 import { I18nProvider, LANGS, useI18n } from "@/lib/i18n";
 import inspection from "@/assets/inspection.jpg.asset.json";
@@ -55,62 +54,33 @@ export const Route = createFileRoute("/")({
 });
 
 export function LanguageSwitch() {
-  // 2. Put your states INSIDE the body of the function
   const { lang, setLang } = useI18n();
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   return (
-    <div className="flex items-center justify-center ">
-      <div className="relative inline-block text-left">
+    <div className="flex items-center gap-1 sm:gap-1.5">
+      {LANGS.map((l) => (
         <button
+          key={l.code}
           type="button"
-          onClick={() => setActiveMenu(activeMenu === "lang" ? null : "lang")}
-          className="flex items-center p-2 rounded hover:bg-muted transition-colors"
+          onClick={() => setLang(l.code)}
+          aria-pressed={lang === l.code}
+          aria-label={l.code.toUpperCase()}
+          title={l.code.toUpperCase()}
+          className={`rounded-full transition ${
+            lang === l.code ? "ring-2 ring-green ring-offset-2" : "opacity-90 hover:opacity-100"
+          }`}
         >
-          <img src={LANGS.find((l) => l.code === lang)?.img || ""} alt={lang} className="h-6 w-6" />
+          <img src={l.img} alt={l.code} className="block h-7 w-7 rounded-full object-cover" />
         </button>
-        {activeMenu === "lang" && (
-          <div className="absolute top-full left-1/2 -translate-x-1/2 w-full z-50 shadow-lg overflow-hidden">
-            <div className="flex flex-col bg-surface items-center ">
-              {LANGS.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => {
-                    setLang(l.code);
-                    setActiveMenu(null); // Closes menu after picking a language
-                  }}
-                  aria-pressed={lang === l.code}
-                  className={`py-2 flex items-center gap-2 hover:bg-muted transition-colors ${
-                    lang === l.code ? "hidden" : ""
-                  }`}
-                >
-                  <img src={l.img} alt={l.code} className="h-6 w-6" />
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-      {/* <ArrowDown className={`h-4 w-4 transition-transform ${activeMenu === 'lang' ? "rotate-180" : ""}`} /> */}
+      ))}
     </div>
   );
 }
 
+// Logo: troque o arquivo public/logo.png pela sua logo (PNG com fundo transparente).
+// Nada mais precisa ser editado aqui — o header e o rodapé usam este mesmo componente.
 function Logo({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="7"
-      strokeLinejoin="miter"
-      aria-hidden
-    >
-      <path d="M8 10 H92 L50 92 Z" />
-      <path d="M50 92 L50 46 L8 10 M50 46 L71 51" />
-    </svg>
-  );
+  return <img src="/logo.png" alt="EFICEM" className={`object-contain ${className}`} />;
 }
 
 function Kicker({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
@@ -151,26 +121,10 @@ function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-surface/95 shadow-md backdrop-blur-md"
-          : window.innerWidth > 1023
-            ? "bg-transparent"
-            : "bg-surface"
+      className={`fixed inset-x-0 top-0 z-50 bg-surface transition-shadow duration-300 ${
+        scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
-      {/* On desktop and not scrolled: white angular plate behind logo & nav */}
-      {!scrolled && (
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 hidden bg-surface lg:block"
-          style={{
-            width: "calc((100vw - 1280px) / 2 + 760px)",
-            minWidth: "735px",
-            clipPath: "polygon(0 0, 100% 0, calc(100% - 50px) 100%, 0 100%)",
-          }}
-        />
-      )}
-
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <div className="flex items-center gap-8">
           <a href="#inicio" className="flex shrink-0 items-center gap-2.5 text-green">
