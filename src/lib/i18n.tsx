@@ -392,7 +392,7 @@ const de: Dict = {
     sponsorBtn: "Sponsor werden",
     menu: "Menü",
     lang: "Sprache",
-    theme: "Helles/dunkes Design wechseln",
+    theme: "Helles/dunkles Design wechseln",
   },
   hero: {
     kicker: "Ingenieurwesen / Innovation / Nachhaltigkeit",
