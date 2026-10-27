@@ -435,7 +435,7 @@ function Project() {
             </h2>
           </TextBlockAnimation>
           <p className="mt-4 text-lg text-muted-foreground">{t.project.text}</p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          <div className="mt-10 grid grid-cols-3 gap-4">
             {specs.map(({ v, u, l, I }) => (
               <div key={l} className="clip-card border-l-4 border-green bg-surface p-5">
                 <I className="h-5 w-5 text-purple" />
@@ -592,31 +592,25 @@ function Gallery() {
             src={track3.url}
             alt={a[2]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover"
-          />
-          <img
-            src={inspection.url}
-            alt={a[4]}
-            loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-2 md:hidden"
+            className="col-span-1 h-full w-full object-cover md:col-span-2 hidden md:block lg:col-span-1"
           />
           <img
             src={track1.url}
             alt={a[5]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-1 sm:hidden md:block"
-          />
-          <img
-            src={teamCar.url}
-            alt={a[1]}
-            loading="lazy"
-            className="clip-card col-span-2 row-span-2 h-full w-full object-cover"
+            className="col-span-1 h-full w-full object-cover md:col-span-1 hidden lg:block"
           />
           <img
             src={inspection.url}
             alt={a[4]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-2 sm:hidden md:block"
+            className="col-span-1 h-full w-full object-cover md:col-span-2 hidden md:block"
+          />
+          <img
+            src={teamCar.url}
+            alt={a[1]}
+            loading="lazy"
+            className="clip-card col-span-2 md:col-span-4 row-span-2 h-full w-full object-cover"
           />
         </div>
       </div>
@@ -628,23 +622,23 @@ function Partners() {
   const { t } = useI18n();
   const names = ["/ufsc.png", "/crea.png", "/poial.png", "/fablab.png"];
   return (
-    <section className="bg-purple text-purple-foreground">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+    <section className="bg-purple text-purple-foreground md:grid md:grid-cols-3">
+      <div className="col-span-2 mx-auto max-w-9xl px-4 py-12 sm:px-6">
         <p className="font-mono uppercase tracking-[0.2em] text-green">{t.partners.title}</p>
-        <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        <ul className="mt-5 flex justify-center gap-8">
           {names.map((n) => (
             <li
               key={n}
-              className="clip-btn border border-purple-foreground/25 bg-purple-foreground/5 px-4 py-4 text-center font-display text-lg font-bold uppercase"
+              className=""
             >
-              <img src={n} alt="" />
+              <img src={n} alt="" className="h-15 "/>
             </li>
           ))}
         </ul>
       </div>
-      <div className="bg-green text-carbon">
-        <p className="mx-auto max-w-7xl px-4 py-6 font-display text-xl font-bold uppercase sm:px-6 sm:text-2xl">
-          {t.partners.quote} <span className="text-purple">{t.partners.quote2}</span>
+      <div className="bg-green text-carbon flex items-center ">
+        <p className="mx-auto max-w-7xl px-4 py-6 md:py-0 font-display text-xl font-bold uppercase sm:px-6 sm:text-2xl">
+          {t.partners.quote}<br /> <span className="text-purple">{t.partners.quote2}</span>
         </p>
       </div>
     </section>
