@@ -16,6 +16,7 @@ import {
   Moon,
 } from "lucide-react";
 import { I18nProvider, LANGS, useI18n } from "@/lib/i18n";
+import TextBlockAnimation from "@/components/ui/text-block-animation";
 import inspection from "@/assets/inspection.jpg.asset.json";
 import track1 from "@/assets/track-1.jpg.asset.json";
 import track3 from "@/assets/track-3.jpg.asset.json";
@@ -168,7 +169,11 @@ function Header() {
       />
       <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <div className="flex items-center gap-8">
-          <a href="#inicio" className="flex shrink-0 items-center gap-2.5 text-green">
+          <a
+            href="#inicio"
+            className="flex shrink-0 items-center gap-2.5 text-green"
+            style={{ transform: "translateX(min(-4px, calc((1280px - 100vw) / 4 - 4px)))" }}
+          >
             <Logo className="h-9 w-9" />
             <span className="font-display text-2xl font-black tracking-tight text-carbon-foreground">
               EFICEM
@@ -179,7 +184,7 @@ function Header() {
               <a
                 key={h}
                 href={h}
-                className="font-display text-sm font-bold uppercase tracking-wide text-carbon/90 hover:text-purple transition-colors"
+                className="rounded-sm px-2 py-1 font-display text-sm font-bold uppercase tracking-wide text-carbon/90 transition-colors hover:bg-purple hover:text-purple-foreground"
               >
                 {l}
               </a>
@@ -315,9 +320,11 @@ function About() {
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center">
         <div className="min-w-0">
           <Kicker>{t.about.kicker}</Kicker>
-          <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
-            {t.about.title}
-          </h2>
+          <TextBlockAnimation>
+            <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
+              {t.about.title}
+            </h2>
+          </TextBlockAnimation>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{t.about.text}</p>
           <dl className="mt-10 grid grid-cols-2 border-y border-border">
             {t.about.stats.map(([v, l]) => (
@@ -357,37 +364,27 @@ function Project() {
   return (
     <section id="projeto" className="clip-section-both bg-ice py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-        <div className="order-2 min-w-0 lg:order-1">
-          <figure className="relative">
-            <img
-              src={chassis.url}
-              alt={t.project.cap}
-              loading="lazy"
-              className="clip-card aspect-[4/5] max-h-[620px] w-full object-cover"
-            />
-            <figcaption className="absolute left-0 top-0 bg-carbon px-3 py-2 font-mono text-xs uppercase text-carbon-foreground">
-              {t.project.cap}
-            </figcaption>
-          </figure>
+        <figure className="relative order-2 min-w-0 lg:order-1">
           <img
-            src="/logo.png"
-            alt=""
-            aria-hidden
-            className="pointer-events-none mx-auto mt-4 h-48 w-48 opacity-20 sm:h-64 sm:w-64"
-            style={{
-              maskImage: "linear-gradient(to bottom, black 25%, transparent)",
-              WebkitMaskImage: "linear-gradient(to bottom, black 25%, transparent)",
-            }}
+            src={chassis.url}
+            alt={t.project.cap}
+            loading="lazy"
+            className="clip-card aspect-[4/5] max-h-[620px] w-full object-cover"
           />
-        </div>
+          <figcaption className="absolute left-0 top-0 bg-carbon px-3 py-2 font-mono text-xs uppercase text-carbon-foreground">
+            {t.project.cap}
+          </figcaption>
+        </figure>
         <div className="order-1 min-w-0 lg:order-2">
           <Kicker>{t.project.kicker}</Kicker>
           <span className="clip-btn mt-5 inline-block bg-purple px-4 py-1.5 font-mono text-sm font-bold text-purple-foreground">
             {t.project.badge}
           </span>
-          <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
-            {t.project.title}
-          </h2>
+          <TextBlockAnimation blockColor="#3B1E77">
+            <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
+              {t.project.title}
+            </h2>
+          </TextBlockAnimation>
           <p className="mt-4 text-lg text-muted-foreground">{t.project.text}</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {specs.map(({ v, u, l, I }) => (
@@ -444,9 +441,11 @@ function Achievements() {
       <div className="tri-mesh pointer-events-none absolute inset-0 opacity-10" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <Kicker dark>{t.ach.kicker}</Kicker>
-        <h2 className="mt-4 max-w-3xl text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
-          {t.ach.title}
-        </h2>
+        <TextBlockAnimation>
+          <h2 className="mt-4 max-w-3xl text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
+            {t.ach.title}
+          </h2>
+        </TextBlockAnimation>
       </div>
 
       <div className="relative mx-auto mt-12 max-w-7xl md:mt-16">
@@ -523,9 +522,11 @@ function Gallery() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Kicker>{t.gallery.kicker}</Kicker>
         <div className="mt-4 flex flex-col gap-3 md:flex-col">
-          <h2 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
-            {t.gallery.title}
-          </h2>
+          <TextBlockAnimation blockColor="#3B1E77">
+            <h2 className="text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
+              {t.gallery.title}
+            </h2>
+          </TextBlockAnimation>
           <p className="max-w-md text-muted-foreground">{t.gallery.sub}</p>
         </div>
         <div className="mt-8 grid auto-rows-[180px] grid-cols-2 gap-3 sm:auto-rows-[220px] md:grid-cols-4">
@@ -628,9 +629,11 @@ function Sponsor() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2">
         <div className="min-w-0">
           <Kicker>{t.sponsor.kicker}</Kicker>
-          <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
-            {t.sponsor.title}
-          </h2>
+          <TextBlockAnimation>
+            <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
+              {t.sponsor.title}
+            </h2>
+          </TextBlockAnimation>
           <p className="mt-5 max-w-lg text-lg text-muted-foreground">{t.sponsor.text}</p>
         </div>
         <form
