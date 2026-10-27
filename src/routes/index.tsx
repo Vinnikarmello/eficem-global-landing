@@ -107,12 +107,12 @@ function useTheme() {
       d = false;
     }
     setDark(d);
-    document.documentElement.dataset.theme = d ? "dark" : "light";
+    document.documentElement.dataset["theme"] = d ? "dark" : "light";
   }, []);
   const toggle = () => {
     setDark((prev) => {
       const next = !prev;
-      document.documentElement.dataset.theme = next ? "dark" : "light";
+      document.documentElement.dataset["theme"] = next ? "dark" : "light";
       try {
         localStorage.setItem("eficem-theme", next ? "dark" : "light");
       } catch {
