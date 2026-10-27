@@ -403,7 +403,7 @@ function Achievements() {
         </h2>
       </div>
 
-      <div className="relative mt-12 md:mt-16">
+      <div className="relative mx-auto mt-12 max-w-7xl md:mt-16">
         <button
           type="button"
           onClick={() => nudge(-1)}
@@ -423,7 +423,7 @@ function Achievements() {
 
         <div
           ref={scroller}
-          className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-10 sm:px-14 lg:px-20"
+          className="no-scrollbar flex snap-x snap-mandatory scroll-px-4 gap-6 overflow-x-auto scroll-smooth px-4 pb-10 sm:scroll-px-6 sm:px-6"
         >
           {items.map(([year, title, text], i) => (
             <article
