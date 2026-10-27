@@ -186,6 +186,7 @@ function ThemeButton({
 
 function Header() {
   const { t } = useI18n();
+  const { dark, toggle } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -246,7 +247,6 @@ function Header() {
           <div className="hidden md:block">
             <LanguageSwitch />{" "}
           </div>
-          <ThemeToggle />
           <div className="hidden md:block">
             <a href="#patrocinio" className={`${btnGreen} px-5 py-2.5`}>
               {t.nav.sponsorBtn} <ArrowRight className="h-4 w-4" />
@@ -263,6 +263,8 @@ function Header() {
         </div>
       </div>
 
+      <ThemeFab dark={dark} toggle={toggle} label={t.nav.theme} />
+
       {open && (
         <div className="border-t border-border bg-surface px-4 pb-6 pt-2 lg:hidden shadow-lg">
           <nav className="flex flex-col">
@@ -278,12 +280,13 @@ function Header() {
               </a>
             ))}
           </nav>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 md:hidden">
+          <div className="mt-4 flex flex-col items-start gap-3 md:hidden">
             <a href="#patrocinio" onClick={() => setOpen(false)} className={btnGreen}>
               {t.nav.sponsorBtn} <ArrowRight className="h-4 w-4" />
             </a>
-            <div className="md:hidden">
-              <LanguageSwitch />{" "}
+            <div className="flex w-full items-center justify-between gap-3">
+              <LanguageSwitch />
+              <ThemeButton dark={dark} toggle={toggle} label={t.nav.theme} />
             </div>
           </div>
         </div>
