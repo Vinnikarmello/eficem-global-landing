@@ -147,7 +147,7 @@ function ThemeFab({
           aria-label={label}
           title={label}
           aria-pressed={dark}
-          className="clip-btn flex h-10 w-10 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:bg-green hover:text-carbon"
+          className="clip-btn flex h-10 w-10 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-purple hover:bg-purple hover:text-carbon"
         >
           <ThemeIcon dark={dark} />
         </button>
@@ -208,9 +208,9 @@ function Header() {
     >
       {/* Placa escura angular atrás da logo + wordmark EFICEM, para contraste */}
       <div
-        className="pointer-events-none absolute left-0 top-0 h-20 bg-carbon"
+        className="pointer-events-none absolute left-0 top-0 h-20 bg-purple"
         style={{
-          width: "max(160px, calc((100vw - 1280px) / 2 + 167px))",
+          width: "max(180px, calc((100vw - 1280px) / 2 + 167px))",
           clipPath: "polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)",
         }}
       />
