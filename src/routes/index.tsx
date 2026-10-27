@@ -246,19 +246,32 @@ function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[480px] sm:min-h-[520px] md:min-h-[560px] lg:min-h-[580px] xl:min-h-[640px] w-full items-center overflow-hidden bg-surface"
+      className="relative flex min-h-[480px] sm:min-h-[520px] md:min-h-[560px] lg:min-h-[580px] xl:min-h-[640px] w-full items-center overflow-hidden bg-ice"
     >
-      {/* Background Image passing underneath header */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/imagem%20do%20hero%20section.png"
-          alt="EFICEM UFSC Joinville Protótipo Shell Eco-marathon"
-          className="h-full w-full object-cover object-left"
+      <div className="absolute inset-y-0 -right-5 lg:block z-0" style={{width: "60%", height: "100%"}}>
+        <div
+          className="absolute inset-0 bg-green"
+          style={{
+            clipPath: "polygon(270px 0%, 100% 0%, 100% 50px, 65px 350px)",
+          }}
         />
-        {/* Mobile/tablet gradient overlay for text readability on small viewports */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent sm:via-surface/40 md:hidden" />
-      </div>
 
+        <div
+          className="absolute inset-0"
+          style={{
+            clipPath: "polygon(140px 0%, 100% 0%, 100% 100%, 0% 100%)"
+          }}
+        >
+
+          <img
+            src={track1.url}
+            alt="EFICEM UFSC Joinville Protótipo Shell Eco-marathon"
+            className="h-full w-full object-cover object-left"
+            style={{ clipPath: "polygon(300px 0, 100% 0, 100% 100%, 0 100%)" }}
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent sm:via-surface/40 md:hidden" />
+        </div>
+      </div>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 pb-12 sm:px-6 md:pt-28 lg:pt-28 lg:pb-16">
         <div className="max-w-md sm:max-w-lg lg:max-w-xl">
           <div className="flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
@@ -506,9 +519,7 @@ function Partners() {
   return (
     <section className="bg-purple text-purple-foreground">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <p className="font-mono uppercase tracking-[0.2em] text-green">
-          {t.partners.title}
-        </p>
+        <p className="font-mono uppercase tracking-[0.2em] text-green">{t.partners.title}</p>
         <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {names.map((n) => (
             <li
@@ -625,7 +636,7 @@ function Footer() {
         </div>
         <div className="sm:flex  sm:justify-center sm:row-span-2 md:row-span-1 md:justify-start">
           <div className="sm:text-start w-max">
-              <h3 className="font-mono text-xs uppercase tracking-widest text-green">
+            <h3 className="font-mono text-xs uppercase tracking-widest text-green">
               {t.footer.links}
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
