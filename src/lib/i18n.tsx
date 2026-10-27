@@ -19,6 +19,7 @@ const pt = {
     sponsorBtn: "Seja Patrocinador",
     menu: "Menu",
     lang: "Idioma",
+    theme: "Alternar tema claro/escuro",
   },
   hero: {
     kicker: "Engenharia / Inovação / Sustentabilidade",
@@ -143,6 +144,7 @@ const es: Dict = {
     sponsorBtn: "Sé Patrocinador",
     menu: "Menú",
     lang: "Idioma",
+    theme: "Cambiar tema claro/oscuro",
   },
   hero: {
     kicker: "Ingeniería / Innovación / Sostenibilidad",
@@ -266,6 +268,7 @@ const en: Dict = {
     sponsorBtn: "Become a Sponsor",
     menu: "Menu",
     lang: "Language",
+    theme: "Switch light/dark theme",
   },
   hero: {
     kicker: "Engineering / Innovation / Sustainability",
@@ -389,6 +392,7 @@ const de: Dict = {
     sponsorBtn: "Sponsor werden",
     menu: "Menü",
     lang: "Sprache",
+    theme: "Helles/dunkles Design wechseln",
   },
   hero: {
     kicker: "Ingenieurwesen / Innovation / Nachhaltigkeit",

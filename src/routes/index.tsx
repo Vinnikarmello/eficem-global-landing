@@ -97,7 +97,7 @@ const btn =
 const btnGreen = `${btn} bg-green text-carbon hover:bg-green-deep`;
 const btnPurpleOutline = `${btn} border-2 border-purple bg-purple text-purple-foreground hover:bg-purple/85`;
 
-function ThemeToggle() {
+function useTheme() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
     let d = false;
@@ -107,12 +107,12 @@ function ThemeToggle() {
       d = false;
     }
     setDark(d);
-    document.documentElement.dataset.theme = d ? "dark" : "light";
+    document.documentElement.dataset["theme"] = d ? "dark" : "light";
   }, []);
   const toggle = () => {
     setDark((prev) => {
       const next = !prev;
-      document.documentElement.dataset.theme = next ? "dark" : "light";
+      document.documentElement.dataset["theme"] = next ? "dark" : "light";
       try {
         localStorage.setItem("eficem-theme", next ? "dark" : "light");
       } catch {
@@ -121,20 +121,72 @@ function ThemeToggle() {
       return next;
     });
   };
+  return { dark, toggle };
+}
+
+function ThemeIcon({ dark }: { dark: boolean }) {
+  return dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />;
+}
+
+/* Botão flutuante: logo abaixo do "Seja Patrocinador" no cabeçalho */
+function ThemeFab({
+  dark,
+  toggle,
+  label,
+}: {
+  dark: boolean;
+  toggle: () => void;
+  label: string;
+}) {
+  return (
+    <div className="pointer-events-none fixed inset-x-0 top-[88px] hidden md:block">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:pr-[76px] lg:pr-6">
+        <div className="flex justify-end">
+          <div className="pointer-events-auto drop-shadow-lg">
+            <button
+              type="button"
+              onClick={toggle}
+              aria-label={label}
+              title={label}
+              aria-pressed={dark}
+              className="clip-btn flex h-11 w-11 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:bg-green hover:text-carbon"
+            >
+              <ThemeIcon dark={dark} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Versão compacta, usada dentro do menu aberto no celular */
+function ThemeButton({
+  dark,
+  toggle,
+  label,
+}: {
+  dark: boolean;
+  toggle: () => void;
+  label: string;
+}) {
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label="Alternar tema claro/escuro"
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-carbon transition-colors hover:border-green hover:text-green"
+      aria-label={label}
+      title={label}
+      aria-pressed={dark}
+      className="flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:text-green"
     >
-      {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      <ThemeIcon dark={dark} />
     </button>
   );
 }
 
 function Header() {
   const { t } = useI18n();
+  const { dark, toggle } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -195,7 +247,6 @@ function Header() {
           <div className="hidden md:block">
             <LanguageSwitch />{" "}
           </div>
-          <ThemeToggle />
           <div className="hidden md:block">
             <a href="#patrocinio" className={`${btnGreen} px-5 py-2.5`}>
               {t.nav.sponsorBtn} <ArrowRight className="h-4 w-4" />
@@ -212,6 +263,8 @@ function Header() {
         </div>
       </div>
 
+      <ThemeFab dark={dark} toggle={toggle} label={t.nav.theme} />
+
       {open && (
         <div className="border-t border-border bg-surface px-4 pb-6 pt-2 lg:hidden shadow-lg">
           <nav className="flex flex-col">
@@ -227,12 +280,13 @@ function Header() {
               </a>
             ))}
           </nav>
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 md:hidden">
+          <div className="mt-4 flex flex-col items-start gap-3 md:hidden">
             <a href="#patrocinio" onClick={() => setOpen(false)} className={btnGreen}>
               {t.nav.sponsorBtn} <ArrowRight className="h-4 w-4" />
             </a>
-            <div className="md:hidden">
-              <LanguageSwitch />{" "}
+            <div className="flex w-full items-center justify-between gap-3">
+              <LanguageSwitch />
+              <ThemeButton dark={dark} toggle={toggle} label={t.nav.theme} />
             </div>
           </div>
         </div>

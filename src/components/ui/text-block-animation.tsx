@@ -62,9 +62,15 @@ export default function TextBlockAnimation({
 
       const tl = gsap.timeline({
         defaults: { ease: "expo.inOut" },
-        scrollTrigger: animateOnScroll
-          ? { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-          : undefined,
+        ...(animateOnScroll
+          ? {
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          : {}),
         delay,
       });
 
