@@ -97,7 +97,7 @@ const btn =
 const btnGreen = `${btn} bg-green text-carbon hover:bg-green-deep`;
 const btnPurpleOutline = `${btn} border-2 border-purple bg-purple text-purple-foreground hover:bg-purple/85`;
 
-function ThemeToggle() {
+function useTheme() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
     let d = false;
@@ -121,14 +121,65 @@ function ThemeToggle() {
       return next;
     });
   };
+  return { dark, toggle };
+}
+
+function ThemeIcon({ dark }: { dark: boolean }) {
+  return dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />;
+}
+
+/* Botão flutuante: logo abaixo do "Seja Patrocinador" no cabeçalho */
+function ThemeFab({
+  dark,
+  toggle,
+  label,
+}: {
+  dark: boolean;
+  toggle: () => void;
+  label: string;
+}) {
+  return (
+    <div className="pointer-events-none fixed inset-x-0 top-[88px] hidden md:block">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex justify-end">
+          <div className="pointer-events-auto drop-shadow-lg">
+            <button
+              type="button"
+              onClick={toggle}
+              aria-label={label}
+              title={label}
+              aria-pressed={dark}
+              className="clip-btn flex h-11 w-11 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:bg-green hover:text-carbon"
+            >
+              <ThemeIcon dark={dark} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Versão compacta, usada dentro do menu aberto no celular */
+function ThemeButton({
+  dark,
+  toggle,
+  label,
+}: {
+  dark: boolean;
+  toggle: () => void;
+  label: string;
+}) {
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label="Alternar tema claro/escuro"
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-carbon transition-colors hover:border-green hover:text-green"
+      aria-label={label}
+      title={label}
+      aria-pressed={dark}
+      className="flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-surface text-carbon transition-colors hover:border-green hover:text-green"
     >
-      {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      <ThemeIcon dark={dark} />
     </button>
   );
 }
