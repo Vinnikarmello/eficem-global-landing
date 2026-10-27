@@ -266,7 +266,7 @@ function Header() {
       <ThemeFab dark={dark} toggle={toggle} label={t.nav.theme} />
 
       {open && (
-        <div className="border-t border-border bg-surface px-4 pb-6 pt-2 lg:hidden shadow-lg">
+        <div className="relative z-50 border-t border-border bg-surface px-4 pb-6 pt-2 lg:hidden shadow-lg">
           <nav className="flex flex-col">
             {links.map(([h, l]) => (
               <a
