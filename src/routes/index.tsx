@@ -140,7 +140,7 @@ function ThemeFab({
 }) {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-[88px] hidden md:block">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:pr-[76px] lg:pr-6">
         <div className="flex justify-end">
           <div className="pointer-events-auto drop-shadow-lg">
             <button
