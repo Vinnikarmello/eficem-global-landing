@@ -366,17 +366,20 @@ function Project() {
   );
 }
 
+// Imagens por marco (mesma ordem de ach.items). As fotos reais da combustão e
+// do protótipo elétrico vêm do site oficial; os demais anos usam fotos da equipe
+// até termos as fotos históricas específicas de cada época.
 const ACH_IMAGES = [
-  team.url,
-  chassis.url,
-  track1.url,
-  track2.url,
-  track3.url,
-  inspection.url,
-  teamCar.url,
-  track2.url,
-  chassis.url,
-  fourth.url,
+  team.url, // 2012
+  "/eficem/combustao.jpg", // 2013 — protótipo à combustão (site oficial)
+  track1.url, // 2015
+  track2.url, // 2016
+  track3.url, // 2017
+  inspection.url, // 2019
+  teamCar.url, // 2021
+  chassis.url, // 2022
+  "/eficem/eletrico.jpg", // 2023 — protótipo elétrico (site oficial)
+  fourth.url, // 2026
 ];
 
 function Achievements() {
@@ -429,7 +432,7 @@ function Achievements() {
             <article
               key={year}
               data-card
-              className="group relative flex w-[270px] shrink-0 snap-start flex-col sm:w-[310px]"
+              className="group relative flex w-[85vw] max-w-[380px] shrink-0 snap-start flex-col sm:w-[360px] sm:max-w-none lg:w-[400px]"
             >
               <span
                 className="pointer-events-none absolute left-0 right-[-24px] top-6 h-px bg-green/25"
