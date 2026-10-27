@@ -30,11 +30,10 @@ const pt = {
   about: {
     kicker: "Sobre nós",
     title: "Mais que uma equipe, um propósito.",
-    text: "A EFICEM é uma equipe de eficiência energética criada em 2012, a partir da união das equipes Catarina e Feneco, por estudantes de Engenharia Automotiva do Centro Tecnológico de Joinville (UFSC). Atualmente participa principalmente da Shell Eco-marathon, nas edições do Brasil e dos Estados Unidos.",
+    text: "Desde 2012, a EFICEM transforma conhecimento em engenharia aplicada, desenvolvendo soluções voltadas à eficiência energética automotiva. Formada por estudantes da UFSC Joinville, a equipe surgiu da união das equipes Catarina e Feneco e tem como objetivo projetar veículos capazes de percorrer maiores distâncias com menor consumo de energia. Esse desafio ganha vida na Shell Eco-marathon, onde a equipe representa seu trabalho em competições no Brasil e nos Estados Unidos.",
     stats: [
       ["2012", "fundação"],
-      ["2", "edições SEM"],
-      ["4º", "lugar 2026"],
+      ["6", "pódios"],
     ],
     cap1: "Inspeção técnica",
     cap2: "Equipe 2025",
@@ -155,11 +154,10 @@ const es: Dict = {
   about: {
     kicker: "Nosotros",
     title: "Más que un equipo, un propósito.",
-    text: "EFICEM es un equipo de eficiencia energética creado en 2012, a partir de la unión de los equipos Catarina y Feneco, por estudiantes de Ingeniería Automotriz del Centro Tecnológico de Joinville (UFSC). Actualmente participa principalmente en la Shell Eco-marathon, en las ediciones de Brasil y Estados Unidos.",
+    text: "Desde 2012, EFICEM transforma el conocimiento en ingeniería aplicada, desarrollando soluciones orientadas a la eficiencia energética automotriz. Formado por estudiantes de la UFSC Joinville, el equipo surgió de la unión de los equipos Catarina y Feneco y tiene como objetivo diseñar vehículos capaces de recorrer mayores distancias con menor consumo de energía. Ese desafío cobra vida en la Shell Eco-marathon, donde el equipo representa su trabajo en competiciones en Brasil y en Estados Unidos.",
     stats: [
       ["2012", "fundación"],
-      ["2", "ediciones SEM"],
-      ["4º", "lugar 2026"],
+      ["6", "podios"],
     ],
     cap1: "Inspección técnica",
     cap2: "Equipo 2025",
@@ -279,11 +277,10 @@ const en: Dict = {
   about: {
     kicker: "About us",
     title: "More than a team, a purpose.",
-    text: "EFICEM is an energy-efficiency team founded in 2012 through the merger of the Catarina and Feneco teams, by Automotive Engineering students at the Joinville Technology Center (UFSC). Today it competes mainly in the Shell Eco-marathon, in both the Brazil and United States editions.",
+    text: "Since 2012, EFICEM has turned knowledge into applied engineering, developing solutions focused on automotive energy efficiency. Made up of UFSC Joinville students, the team emerged from the merger of the Catarina and Feneco teams and aims to design vehicles able to travel greater distances on less energy. That challenge comes to life at the Shell Eco-marathon, where the team showcases its work in competitions in Brazil and the United States.",
     stats: [
       ["2012", "founded"],
-      ["2", "SEM editions"],
-      ["4th", "place 2026"],
+      ["6", "podiums"],
     ],
     cap1: "Technical inspection",
     cap2: "2025 team",
@@ -403,11 +400,10 @@ const de: Dict = {
   about: {
     kicker: "Über uns",
     title: "Mehr als ein Team – eine Mission.",
-    text: "EFICEM ist ein Energieeffizienzteam, das 2012 aus dem Zusammenschluss der Teams Catarina und Feneco von Studierenden der Fahrzeugtechnik am Technologiezentrum Joinville (UFSC) gegründet wurde. Heute nimmt es hauptsächlich am Shell Eco-marathon teil – in Brasilien und den USA.",
+    text: "Seit 2012 verwandelt EFICEM Wissen in angewandte Technik und entwickelt Lösungen für die Energieeffizienz von Fahrzeugen. Das Team besteht aus Studierenden der UFSC Joinville, entstand aus dem Zusammenschluss der Teams Catarina und Feneco und will Fahrzeuge entwickeln, die größere Strecken mit weniger Energie zurücklegen. Diese Herausforderung wird bei der Shell Eco-marathon lebendig, wo das Team seine Arbeit in Wettbewerben in Brasilien und den USA präsentiert.",
     stats: [
       ["2012", "gegründet"],
-      ["2", "SEM-Ausgaben"],
-      ["4.", "Platz 2026"],
+      ["6", "Podien"],
     ],
     cap1: "Technische Abnahme",
     cap2: "Team 2025",

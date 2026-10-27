@@ -9,16 +9,16 @@ import {
   Instagram,
   Mail,
   MapPin,
-  Download,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { I18nProvider, LANGS, useI18n } from "@/lib/i18n";
 import inspection from "@/assets/inspection.jpg.asset.json";
 import track1 from "@/assets/track-1.jpg.asset.json";
 import track3 from "@/assets/track-3.jpg.asset.json";
-import team from "@/assets/team.jpg.asset.json";
 import teamCar from "@/assets/team-car.jpg.asset.json";
 import fourth from "@/assets/fourth-place.jpg.asset.json";
 import chassis from "@/assets/chassis.jpg.asset.json";
@@ -95,8 +95,43 @@ function Kicker({ children, dark = false }: { children: React.ReactNode; dark?: 
 const btn =
   "clip-btn inline-flex items-center justify-center gap-2 px-6 py-3 font-display text-sm font-bold uppercase tracking-wide transition-colors";
 const btnGreen = `${btn} bg-green text-carbon hover:bg-green-deep`;
-const btnOutline = `${btn} border-2 border-carbon text-carbon hover:bg-carbon hover:text-carbon-foreground`;
 const btnPurpleOutline = `${btn} border-2 border-purple text-purple bg-surface/80 hover:bg-purple hover:text-purple-foreground`;
+
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    let d = false;
+    try {
+      d = localStorage.getItem("eficem-theme") === "dark";
+    } catch {
+      d = false;
+    }
+    setDark(d);
+    document.documentElement.dataset.theme = d ? "dark" : "light";
+  }, []);
+  const toggle = () => {
+    setDark((prev) => {
+      const next = !prev;
+      document.documentElement.dataset.theme = next ? "dark" : "light";
+      try {
+        localStorage.setItem("eficem-theme", next ? "dark" : "light");
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  };
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label="Alternar tema claro/escuro"
+      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-carbon transition-colors hover:border-green hover:text-green"
+    >
+      {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
+  );
+}
 
 function Header() {
   const { t } = useI18n();
@@ -123,11 +158,19 @@ function Header() {
         scrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
-      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
-        <div className="flex items-center gap-8">
+      {/* Placa escura angular atrás da logo + wordmark EFICEM, para contraste */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 bg-carbon"
+        style={{
+          width: "max(210px, calc((100vw - 1280px) / 2 + 220px))",
+          clipPath: "polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%)",
+        }}
+      />
+      <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+        <div className="flex items-center gap-8 lg:gap-16">
           <a href="#inicio" className="flex shrink-0 items-center gap-2.5 text-green">
             <Logo className="h-9 w-9" />
-            <span className="font-display text-2xl font-black tracking-tight text-carbon">
+            <span className="font-display text-2xl font-black tracking-tight text-carbon-foreground">
               EFICEM
             </span>
           </a>
@@ -148,6 +191,7 @@ function Header() {
           <div className="hidden md:block">
             <LanguageSwitch />{" "}
           </div>
+          <ThemeToggle />
           <div className="hidden md:block">
             <a href="#patrocinio" className={`${btnGreen} px-5 py-2.5`}>
               {t.nav.sponsorBtn} <ArrowRight className="h-4 w-4" />
@@ -193,8 +237,20 @@ function Header() {
   );
 }
 
+const HERO_IMAGES = [
+  "/eficem/equipe2025.jpg",
+  "/eficem/safety2022.jpg",
+  "/eficem/setta2017.jpg",
+  "/eficem/eletropig2023.jpg",
+];
+
 function Hero() {
   const { t } = useI18n();
+  const [heroIdx, setHeroIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setHeroIdx((i) => (i + 1) % HERO_IMAGES.length), 5000);
+    return () => clearInterval(id);
+  }, []);
   return (
     <section
       id="inicio"
@@ -217,12 +273,20 @@ function Hero() {
             clipPath: "polygon(140px 0%, 100% 0%, 100% 100%, 0% 100%)",
           }}
         >
-          <img
-            src={track1.url}
-            alt="EFICEM UFSC Joinville Protótipo Shell Eco-marathon"
-            className="h-full w-full object-cover object-left"
-            style={{ clipPath: "polygon(300px 0, 100% 0, 100% 100%, 0 100%)" }}
-          />
+          {HERO_IMAGES.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt="EFICEM UFSC Joinville — equipe e protótipos"
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+                i === heroIdx ? "opacity-100" : "opacity-0"
+              }`}
+              style={{
+                clipPath: "polygon(300px 0, 100% 0, 100% 100%, 0 100%)",
+                objectPosition: "center",
+              }}
+            />
+          ))}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-transparent sm:via-surface/40 md:hidden" />
         </div>
       </div>
@@ -272,7 +336,7 @@ function About() {
             {t.about.title}
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{t.about.text}</p>
-          <dl className="mt-10 grid grid-cols-3 border-y border-border">
+          <dl className="mt-10 grid grid-cols-2 border-y border-border">
             {t.about.stats.map(([v, l]) => (
               <div
                 key={l}
@@ -284,30 +348,17 @@ function About() {
             ))}
           </dl>
         </div>
-        <div className="grid min-w-0 grid-cols-5 gap-3">
-          <figure className="col-span-5 sm:col-span-3">
-            <img
-              src={inspection.url}
-              alt={t.about.cap1}
-              loading="lazy"
-              className="clip-poly-a aspect-[4/3] w-full object-cover"
-            />
-            <figcaption className="mt-2 font-mono text-xs uppercase text-muted-foreground">
-              ▼ {t.about.cap1}
-            </figcaption>
-          </figure>
-          <figure className="col-span-5 sm:col-span-2 sm:mt-16">
-            <img
-              src={team.url}
-              alt={t.about.cap2}
-              loading="lazy"
-              className="clip-poly-b aspect-[4/3] w-full object-cover sm:aspect-[3/4]"
-            />
-            <figcaption className="mt-2 font-mono text-xs uppercase text-muted-foreground">
-              ▼ {t.about.cap2}
-            </figcaption>
-          </figure>
-        </div>
+        <figure className="min-w-0">
+          <img
+            src="/eficem/equipe2025.jpg"
+            alt={t.about.cap2}
+            loading="lazy"
+            className="clip-poly-a aspect-[4/3] w-full object-cover"
+          />
+          <figcaption className="mt-2 font-mono text-xs uppercase text-muted-foreground">
+            ▼ {t.about.cap2}
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
@@ -323,17 +374,25 @@ function Project() {
   return (
     <section id="projeto" className="clip-section-both bg-ice py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-        <figure className="relative order-2 min-w-0 lg:order-1">
+        <div className="order-2 min-w-0 lg:order-1">
+          <figure className="relative">
+            <img
+              src={chassis.url}
+              alt={t.project.cap}
+              loading="lazy"
+              className="clip-card aspect-[4/5] max-h-[620px] w-full object-cover"
+            />
+            <figcaption className="absolute left-0 top-0 bg-carbon px-3 py-2 font-mono text-xs uppercase text-carbon-foreground">
+              {t.project.cap}
+            </figcaption>
+          </figure>
           <img
-            src={chassis.url}
-            alt={t.project.cap}
-            loading="lazy"
-            className="clip-card aspect-[4/5] max-h-[620px] w-full object-cover"
+            src="/logo.png"
+            alt=""
+            aria-hidden
+            className="pointer-events-none mx-auto mt-8 h-32 w-32 opacity-90 sm:h-48 sm:w-48"
           />
-          <figcaption className="absolute left-0 top-0 bg-carbon px-3 py-2 font-mono text-xs uppercase text-carbon-foreground">
-            {t.project.cap}
-          </figcaption>
-        </figure>
+        </div>
         <div className="order-1 min-w-0 lg:order-2">
           <Kicker>{t.project.kicker}</Kicker>
           <span className="clip-btn mt-5 inline-block bg-purple px-4 py-1.5 font-mono text-sm font-bold text-purple-foreground">
@@ -586,12 +645,6 @@ function Sponsor() {
             {t.sponsor.title}
           </h2>
           <p className="mt-5 max-w-lg text-lg text-muted-foreground">{t.sponsor.text}</p>
-          <a
-            href={`mailto:${EMAIL}?subject=${encodeURIComponent(t.sponsor.kitSubject)}`}
-            className={`${btnOutline} mt-8`}
-          >
-            <Download className="h-4 w-4" /> {t.sponsor.kit}
-          </a>
         </div>
         <form
           onSubmit={onSubmit}
