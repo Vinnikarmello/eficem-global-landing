@@ -22,7 +22,6 @@ import track1 from "@/assets/track-1.jpg.asset.json";
 import track3 from "@/assets/track-3.jpg.asset.json";
 import teamCar from "@/assets/team-car.jpg.asset.json";
 import fourth from "@/assets/fourth-place.jpg.asset.json";
-import chassis from "@/assets/chassis.jpg.asset.json";
 import video from "@/assets/eficem.mp4.asset.json";
 
 const EMAIL = "comunicacaoeficem@gmail.com";
@@ -366,7 +365,7 @@ function Project() {
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:items-center">
         <figure className="relative order-2 min-w-0 lg:order-1">
           <img
-            src={chassis.url}
+            src="/eficem/projeto.jpg"
             alt={t.project.cap}
             loading="lazy"
             className="clip-card aspect-[4/5] max-h-[620px] w-full object-cover"
