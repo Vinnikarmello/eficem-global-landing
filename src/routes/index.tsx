@@ -78,9 +78,6 @@ export function LanguageSwitch() {
     </div>
   );
 }
-
-// Logo: troque o arquivo public/logo.png pela sua logo (PNG com fundo transparente).
-// Nada mais precisa ser editado aqui — o header e o rodapé usam este mesmo componente.
 function Logo({ className = "" }: { className?: string }) {
   return <img src="/logo.png" alt="EFICEM" className={`object-contain ${className}`} />;
 }
@@ -533,7 +530,7 @@ function Gallery() {
 
 function Partners() {
   const { t } = useI18n();
-  const names = ["Shell", "UFSC", "CREA-SC", "Polal", "Tropeiro", "Schmid"];
+  const names = ["/ufsc.png", "/crea.png", "/poial.png", "/fablab.png"];
   return (
     <section className="bg-purple text-purple-foreground">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
@@ -544,7 +541,7 @@ function Partners() {
               key={n}
               className="clip-btn border border-purple-foreground/25 bg-purple-foreground/5 px-4 py-4 text-center font-display text-lg font-bold uppercase"
             >
-              {n}
+              <img src={n} alt="" />
             </li>
           ))}
         </ul>
