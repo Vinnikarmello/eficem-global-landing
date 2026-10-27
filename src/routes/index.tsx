@@ -377,7 +377,7 @@ const ACH_IMAGES = [
   track3.url, // 2017
   inspection.url, // 2019
   teamCar.url, // 2021
-  chassis.url, // 2022
+  "/eficem/safety2022.jpg", // 2022 — Safety Award na Shell Eco-marathon Brasil
   "/eficem/eletrico.jpg", // 2023 — protótipo elétrico (site oficial)
   fourth.url, // 2026
 ];
