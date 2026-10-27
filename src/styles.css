@@ -38,13 +38,13 @@
 
 :root {
   --radius: 0;
-  --ice: oklch(0.97 0.005 255);          /* #F4F6F9 */
-  --surface: oklch(1 0 0);               /* #FFFFFF */
-  --carbon: oklch(0.15 0.008 285);       /* #0D0D11 */
+  --ice: oklch(0.97 0.005 255); /* #F4F6F9 */
+  --surface: oklch(1 0 0); /* #FFFFFF */
+  --carbon: oklch(0.15 0.008 285); /* #0D0D11 */
   --carbon-foreground: oklch(1 0 0);
-  --green: oklch(0.71 0.18 130);         /* #76B82A */
+  --green: oklch(0.71 0.18 130); /* #76B82A */
   --green-deep: oklch(0.58 0.16 130);
-  --purple: oklch(0.32 0.14 290);        /* #3B1E77 */
+  --purple: oklch(0.32 0.14 290); /* #3B1E77 */
   --purple-foreground: oklch(1 0 0);
 
   --background: var(--ice);
@@ -65,15 +65,28 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-  html, body { overflow-x: clip; max-width: 100%; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3 { font-family: var(--font-display); }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
 }
 
 /* Angular button: diagonal cut bottom-right */
@@ -111,9 +124,24 @@
 
 @utility tri-mesh {
   background-image:
-    linear-gradient(60deg, transparent 49.5%, color-mix(in oklab, var(--green) 35%, transparent) 50%, transparent 50.5%),
-    linear-gradient(-60deg, transparent 49.5%, color-mix(in oklab, var(--green) 35%, transparent) 50%, transparent 50.5%),
-    linear-gradient(0deg, transparent 49.5%, color-mix(in oklab, var(--green) 35%, transparent) 50%, transparent 50.5%);
+    linear-gradient(
+      60deg,
+      transparent 49.5%,
+      color-mix(in oklab, var(--green) 35%, transparent) 50%,
+      transparent 50.5%
+    ),
+    linear-gradient(
+      -60deg,
+      transparent 49.5%,
+      color-mix(in oklab, var(--green) 35%, transparent) 50%,
+      transparent 50.5%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 49.5%,
+      color-mix(in oklab, var(--green) 35%, transparent) 50%,
+      transparent 50.5%
+    );
   background-size: 80px 138px;
 }
 @utility chevrons {
@@ -122,13 +150,28 @@
   color: var(--green);
 }
 @utility header-glass {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 95%, transparent), color-mix(in oklab, var(--surface) 82%, transparent));
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--surface) 95%, transparent),
+    color-mix(in oklab, var(--surface) 82%, transparent)
+  );
   backdrop-filter: blur(12px);
 }
 @utility marquee {
   animation: marquee 30s linear infinite;
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
