@@ -368,14 +368,14 @@ function Project() {
 // do protótipo elétrico vêm do site oficial; os demais anos usam fotos da equipe
 // até termos as fotos históricas específicas de cada época.
 const ACH_IMAGES = [
-  team.url, // 2012
+  "/eficem/logo2012.jpg", // 2012 — logo da equipe
   "/eficem/combustao.jpg", // 2013 — protótipo à combustão (site oficial)
   "/eficem/setta2016.jpg", // 2016 — Setta nº 312 na Shell Eco-marathon
-  track3.url, // 2017
+  "/eficem/setta2017.jpg", // 2017 — equipe com o Setta nº 304 (SEM Americas)
   inspection.url, // 2019
-  teamCar.url, // 2021
+  "/eficem/virtual2021.jpg", // 2021 — Virtual League 2020-2021
   "/eficem/safety2022.jpg", // 2022 — Safety Award na Shell Eco-marathon Brasil
-  "/eficem/eletrico.jpg", // 2023 — protótipo elétrico (site oficial)
+  "/eficem/eletropig2023.jpg", // 2023 — 3º lugar, Eletropig na SEMB
   fourth.url, // 2026
 ];
 
