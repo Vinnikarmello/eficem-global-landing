@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   Menu,
   X,
@@ -11,6 +11,8 @@ import {
   MapPin,
   Download,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { I18nProvider, LANGS, useI18n } from "@/lib/i18n";
 import inspection from "@/assets/inspection.jpg.asset.json";
@@ -364,9 +366,33 @@ function Project() {
   );
 }
 
+// Imagens por marco (mesma ordem de ach.items). As fotos reais da combustão e
+// do protótipo elétrico vêm do site oficial; os demais anos usam fotos da equipe
+// até termos as fotos históricas específicas de cada época.
+const ACH_IMAGES = [
+  team.url, // 2012
+  "/eficem/combustao.jpg", // 2013 — protótipo à combustão (site oficial)
+  track1.url, // 2015
+  track2.url, // 2016
+  track3.url, // 2017
+  inspection.url, // 2019
+  teamCar.url, // 2021
+  chassis.url, // 2022
+  "/eficem/eletrico.jpg", // 2023 — protótipo elétrico (site oficial)
+  fourth.url, // 2026
+];
+
 function Achievements() {
   const { t } = useI18n();
   const items = t.ach.items;
+  const scroller = useRef<HTMLDivElement>(null);
+  const nudge = (dir: number) => {
+    const el = scroller.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const step = card ? card.offsetWidth + 24 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
   return (
     <section
       id="conquistas"
@@ -378,30 +404,62 @@ function Achievements() {
         <h2 className="mt-4 max-w-3xl text-3xl font-bold uppercase tracking-tight sm:text-4xl lg:text-5xl">
           {t.ach.title}
         </h2>
-        <div className="mt-14 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
-          <ol className="relative min-w-0 border-l-2 border-green/60 pl-8 sm:pl-10">
-            {items.map(([y, title, text], i) => (
-              <li key={y} className="relative pb-10 last:pb-0">
+      </div>
+
+      <div className="relative mt-12 md:mt-16">
+        <button
+          type="button"
+          onClick={() => nudge(-1)}
+          aria-label={t.ach.prev}
+          className="absolute left-2 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center rounded-full border border-green/50 bg-carbon/80 p-2.5 text-green backdrop-blur-sm transition hover:bg-green hover:text-carbon sm:flex lg:left-4"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          onClick={() => nudge(1)}
+          aria-label={t.ach.next}
+          className="absolute right-2 top-1/2 z-20 hidden -translate-y-1/2 items-center justify-center rounded-full border border-green/50 bg-carbon/80 p-2.5 text-green backdrop-blur-sm transition hover:bg-green hover:text-carbon sm:flex lg:right-4"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+
+        <div
+          ref={scroller}
+          className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-10 sm:px-14 lg:px-20"
+        >
+          {items.map(([year, title, text], i) => (
+            <article
+              key={year}
+              data-card
+              className="group relative flex w-[85vw] max-w-[380px] shrink-0 snap-start flex-col sm:w-[360px] sm:max-w-none lg:w-[400px]"
+            >
+              <span
+                className="pointer-events-none absolute left-0 right-[-24px] top-6 h-px bg-green/25"
+                aria-hidden
+              />
+              <div className="relative z-10 flex h-12 items-center gap-3">
                 <span
-                  className={`clip-tri-node absolute -left-[43px] top-1 h-5 w-6 sm:-left-[51px] ${i === items.length - 1 ? "bg-green" : "bg-purple ring-0"}`}
+                  className={`clip-tri-node h-5 w-6 shrink-0 ${i === items.length - 1 ? "bg-green" : "bg-purple"}`}
                 />
-                <span className="font-mono text-3xl font-bold text-green">{y}</span>
-                <h3 className="mt-1 text-xl font-bold uppercase">{title}</h3>
-                <p className="mt-2 max-w-xl text-carbon-foreground/70">{text}</p>
-              </li>
-            ))}
-          </ol>
-          <figure className="min-w-0 self-start lg:sticky lg:top-24">
-            <img
-              src={fourth.url}
-              alt={items[items.length - 1]?.[2] ?? ""}
-              loading="lazy"
-              className="clip-card mx-auto w-full max-w-sm border-4 border-green object-cover"
-            />
-          </figure>
+                <span className="font-mono text-3xl font-bold text-green">{year}</span>
+              </div>
+              <div className="clip-card overflow-hidden border border-green/20">
+                <img
+                  src={ACH_IMAGES[i % ACH_IMAGES.length]}
+                  alt={title}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="mt-4 text-lg font-bold uppercase leading-tight">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-carbon-foreground/70">{text}</p>
+            </article>
+          ))}
         </div>
       </div>
-      <div className="relative mt-16 overflow-hidden border-t border-green/30 py-4" aria-hidden>
+
+      <div className="relative mt-4 overflow-hidden border-t border-green/30 py-4" aria-hidden>
         <div className="marquee chevrons flex w-max whitespace-nowrap text-xl">
           {Array.from({ length: 40 }).map((_, i) => (
             <span key={i} className="px-4">
