@@ -202,7 +202,7 @@ function Hero() {
       id="inicio"
       className="relative flex min-h-[480px] sm:min-h-[520px] md:min-h-[560px] lg:min-h-[580px] xl:min-h-[640px] w-full items-center overflow-hidden bg-ice"
     >
-      <div className="absolute inset-y-0 -right-5 lg:block z-0" style={{width: "60%", height: "100%"}}>
+      <div className="absolute inset-y-0 -right-5 lg:block z-0 bg-ice" style={{width: "60%", height: "100%"}}>
         <div
           className="absolute inset-0 bg-green"
           style={{
@@ -444,10 +444,16 @@ function Gallery() {
             className="col-span-1 h-full w-full object-cover"
           />
           <img
+            src={inspection.url}
+            alt={a[4]}
+            loading="lazy"
+            className="col-span-1 h-full w-full object-cover md:col-span-2 md:hidden"
+          />
+          <img
             src={track1.url}
             alt={a[5]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-1"
+            className="col-span-1 h-full w-full object-cover md:col-span-1 sm:hidden md:block"
           />
           <img
             src={teamCar.url}
@@ -459,7 +465,7 @@ function Gallery() {
             src={inspection.url}
             alt={a[4]}
             loading="lazy"
-            className="col-span-1 h-full w-full object-cover md:col-span-2"
+            className="col-span-1 h-full w-full object-cover md:col-span-2 sm:hidden md:block"
           />
         </div>
       </div>
