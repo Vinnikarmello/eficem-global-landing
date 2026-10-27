@@ -160,13 +160,13 @@ function Header() {
     >
       {/* Placa escura angular atrás da logo + wordmark EFICEM, para contraste */}
       <div
-        className="pointer-events-none absolute inset-y-0 left-0 bg-carbon"
+        className="pointer-events-none absolute left-0 top-0 h-20 bg-carbon"
         style={{
           width: "max(160px, calc((100vw - 1280px) / 2 + 167px))",
           clipPath: "polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%)",
         }}
       />
-      <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+      <div className="rise-in relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <div className="flex items-center gap-8">
           <a
             href="#inicio"
@@ -279,24 +279,24 @@ function Hero() {
       </div>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 pb-12 sm:px-6 md:pt-28 lg:pt-28 lg:pb-16">
         <div className="max-w-md sm:max-w-lg lg:max-w-xl">
-          <div className="flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+          <div className="rise-in rise-d1 flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
             <span className="h-1.5 w-6 bg-green shrink-0" />
             <span>{t.hero.kicker}</span>
           </div>
 
-          <h1 className="mt-4 font-display text-5xl font-black uppercase leading-none tracking-tight text-carbon sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="rise-in rise-d2 mt-4 font-display text-5xl font-black uppercase leading-none tracking-tight text-carbon sm:text-6xl md:text-7xl lg:text-8xl">
             EFICEM
           </h1>
 
-          <p className="mt-4 max-w-lg font-sans text-xl font-bold leading-snug text-carbon sm:text-2xl">
+          <p className="rise-in rise-d3 mt-4 max-w-lg font-sans text-xl font-bold leading-snug text-carbon sm:text-2xl">
             {t.hero.title}
           </p>
 
-          <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="rise-in rise-d4 mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
             {t.hero.sub}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="rise-in rise-d5 mt-8 flex flex-wrap items-center gap-4">
             <a href="#projeto" className={btnGreen}>
               {t.hero.cta} <ArrowRight className="h-4 w-4" />
             </a>
