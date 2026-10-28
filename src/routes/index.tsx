@@ -129,15 +129,7 @@ function ThemeIcon({ dark }: { dark: boolean }) {
 }
 
 /* Botão flutuante: logo abaixo do "Seja Patrocinador" no cabeçalho */
-function ThemeFab({
-  dark,
-  toggle,
-  label,
-}: {
-  dark: boolean;
-  toggle: () => void;
-  label: string;
-}) {
+function ThemeFab({ dark, toggle, label }: { dark: boolean; toggle: () => void; label: string }) {
   return (
     <div className="pointer-events-none fixed right-3 top-[88px] z-40 hidden md:block">
       <div className="pointer-events-auto drop-shadow-lg">
@@ -207,7 +199,7 @@ function Header() {
       }`}
     >
       <div
-        className="pointer-events-none absolute left-0 top-0 h-20 bg-purple"
+        className="pointer-events-none absolute left-0 top-0 h-20 bg-carbon"
         style={{
           width: "max(190px, calc((100vw - 1280px) / 2 + 167px))",
           clipPath: "polygon(0 0, 100% 0, calc(100% - 40px) 100%, 0 100%)",
@@ -225,12 +217,12 @@ function Header() {
               EFICEM
             </span>
           </a>
-          <nav className="hidden items-center gap-[2vw] lg:flex">
+          <nav className="hidden items-center gap-6 min-[1200px]:flex">
             {links.map(([h, l]) => (
               <a
                 key={h}
                 href={h}
-                className="rounded-sm px-2 py-1 font-display text-sm font-bold uppercase tracking-wide text-carbon/90 transition-colors hover:bg-purple hover:text-purple-foreground"
+                className="whitespace-nowrap rounded-sm px-2 py-1 font-display text-sm font-bold uppercase tracking-wide text-carbon/90 transition-colors hover:bg-purple hover:text-purple-foreground"
               >
                 {l}
               </a>
@@ -248,7 +240,7 @@ function Header() {
             </a>
           </div>
           <button
-            className="p-2 text-carbon lg:hidden"
+            className="p-2 text-carbon min-[1200px]:hidden"
             onClick={() => setOpen(!open)}
             aria-label={t.nav.menu}
             aria-expanded={open}
@@ -261,7 +253,7 @@ function Header() {
       <ThemeFab dark={dark} toggle={toggle} label={t.nav.theme} />
 
       {open && (
-        <div className="relative z-50 border-t border-border bg-surface px-4 pb-6 pt-2 lg:hidden shadow-lg">
+        <div className="relative z-50 border-t border-border bg-surface px-4 pb-6 pt-2 shadow-lg min-[1200px]:hidden">
           <nav className="flex flex-col">
             {links.map(([h, l]) => (
               <a
@@ -307,7 +299,7 @@ function Hero() {
             clipPath: "polygon(270px 0%, 100% 0%, 100% 50px, 65px 350px)",
           }}
         />
-        
+
         <div
           className="absolute inset-0 object-cover sm:-right-30"
           style={{
@@ -324,13 +316,13 @@ function Hero() {
             }}
           />
           <div
-          className="absolute inset-0 bg-purple hidden lg:block"
-          style={{
-            clipPath: "polygon(57vw 0%, 47vw 100%, 100% 100%, 100% 0%)",
-          }}
-        />
+            className="absolute inset-0 bg-purple hidden lg:block"
+            style={{
+              clipPath: "polygon(57vw 0%, 47vw 100%, 100% 100%, 100% 0%)",
+            }}
+          />
 
-          <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r from-ice via-ice/90 to-transparent sm:via-ice/40 ${window.innerWidth <= 898 ? 'block' : 'hidden'}`} />
+          <div className="pointer-events-none absolute inset-0 block bg-gradient-to-r from-ice via-ice/90 to-transparent min-[899px]:hidden sm:via-ice/40" />
         </div>
       </div>
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 pb-12 sm:px-6 md:pt-28 lg:pt-28 lg:pb-16">
@@ -630,18 +622,21 @@ function Partners() {
         <p className="font-mono uppercase tracking-[0.2em] text-green">{t.partners.title}</p>
         <ul className="mt-5 flex justify-center gap-8">
           {names.map((n) => (
-            <li
-              key={n}
-              className=""
-            >
-              <img src={n} alt="" className="h-15 object-contain" style={{ filter: n === "/fablab.png" ? "invert(100%)" : "none" }} />
+            <li key={n} className="">
+              <img
+                src={n}
+                alt=""
+                className="h-15 object-contain"
+                style={{ filter: n === "/fablab.png" ? "invert(100%)" : "none" }}
+              />
             </li>
           ))}
         </ul>
       </div>
       <div className="bg-green text-carbon flex items-center ">
         <p className="mx-auto max-w-7xl px-4 py-6 md:py-0 font-display text-xl font-bold uppercase sm:px-6 sm:text-2xl">
-          {t.partners.quote}<br /> <span className="text-purple">{t.partners.quote2}</span>
+          {t.partners.quote}
+          <br /> <span className="text-purple">{t.partners.quote2}</span>
         </p>
       </div>
     </section>
