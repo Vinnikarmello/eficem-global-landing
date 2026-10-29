@@ -289,6 +289,20 @@ function Hero() {
       id="inicio"
       className="relative w-full overflow-hidden bg-ice lg:flex lg:min-h-[580px] lg:items-center xl:min-h-[640px]"
     >
+      {/* Fundo esmaecido com a foto — apenas mobile/tablet (abaixo de lg) */}
+      <div className="pointer-events-none absolute inset-0 z-0 lg:hidden" aria-hidden="true">
+        <img
+          src="/eficem/hero.jpg"
+          alt=""
+          className="h-full w-full object-cover opacity-25"
+          style={{
+            objectPosition: "center 45%",
+            maskImage: "linear-gradient(to bottom, transparent, #000 22%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent, #000 22%)",
+          }}
+        />
+      </div>
+
       {/* Painel diagonal com a imagem — apenas desktop (lg+) */}
       <div
         className="absolute inset-y-0 -right-5 z-0 hidden bg-ice lg:block"
@@ -352,16 +366,6 @@ function Hero() {
             </a>
           </div>
         </div>
-      </div>
-
-      {/* Imagem como banner — apenas mobile/tablet (abaixo de lg) */}
-      <div className="relative z-0 mt-8 border-t-4 border-green lg:hidden">
-        <img
-          src="/eficem/hero.jpg"
-          alt="EFICEM UFSC Joinville — protótipo na pista"
-          className="h-56 w-full object-cover sm:h-72"
-          style={{ objectPosition: "center 42%" }}
-        />
       </div>
     </section>
   );
