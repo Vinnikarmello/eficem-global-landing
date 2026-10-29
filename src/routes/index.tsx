@@ -194,8 +194,8 @@ function Header() {
 
   return (
     <header
-      className={`fixed  inset-x-0 top-0 z-50 md:bg-surface sm:bg-transparent transition-shadow duration-300 ${
-        scrolled ? "shadow-md sm:backdrop-blur-md" : "md:shadow-sm"
+      className={`fixed inset-x-0 top-0 z-50 transition-shadow duration-300 md:bg-surface ${
+        scrolled ? "bg-surface shadow-md backdrop-blur-md" : "md:shadow-sm"
       }`}
     >
       <div
