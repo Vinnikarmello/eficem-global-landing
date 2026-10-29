@@ -446,15 +446,18 @@ function Project() {
             </h2>
           </TextBlockAnimation>
           <p className="mt-4 text-lg text-muted-foreground">{t.project.text}</p>
-          <div className="mt-10 grid grid-cols-3 gap-4">
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {specs.map(({ v, u, l, I }) => (
-              <div key={l} className="clip-card border-l-4 border-green bg-surface p-5">
+              <div
+                key={l}
+                className="clip-card min-w-0 border-l-4 border-green bg-surface p-4 sm:p-5"
+              >
                 <I className="h-5 w-5 text-purple" />
-                <p className="mt-3 font-mono text-4xl font-bold leading-none text-carbon">
+                <p className="mt-3 font-mono text-3xl font-bold leading-none text-carbon sm:text-4xl">
                   {v}
                   <span className="ml-1 text-lg text-green-deep">{u}</span>
                 </p>
-                <p className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{l}</p>
+                <p className="mt-2 text-xs uppercase tracking-wider text-muted-foreground">{l}</p>
                 <p className="chevrons mt-3 text-sm" aria-hidden>
                   {">>>>"}
                 </p>
