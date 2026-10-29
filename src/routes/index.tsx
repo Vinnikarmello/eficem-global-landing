@@ -287,10 +287,11 @@ function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[480px] sm:min-h-[520px] md:min-h-[560px] lg:min-h-[580px] xl:min-h-[640px] w-full items-center overflow-hidden bg-ice"
+      className="relative w-full overflow-hidden bg-ice lg:flex lg:min-h-[580px] lg:items-center xl:min-h-[640px]"
     >
+      {/* Painel diagonal com a imagem — apenas desktop (lg+) */}
       <div
-        className="absolute inset-y-0 -right-5 lg:block z-0 bg-ice"
+        className="absolute inset-y-0 -right-5 z-0 hidden bg-ice lg:block"
         style={{ width: "60%", height: "100%" }}
       >
         <div
@@ -301,7 +302,7 @@ function Hero() {
         />
 
         <div
-          className="absolute inset-0 object-cover sm:-right-30"
+          className="absolute inset-0"
           style={{
             clipPath: "polygon(140px 0%, 100% 0%, 100% 100%, 0% 100%)",
           }}
@@ -316,16 +317,14 @@ function Hero() {
             }}
           />
           <div
-            className="absolute inset-0 bg-purple hidden lg:block"
+            className="absolute inset-0 bg-purple"
             style={{
               clipPath: "polygon(57vw 0%, 47vw 100%, 100% 100%, 100% 0%)",
             }}
           />
-
-          <div className="pointer-events-none absolute inset-0 block bg-gradient-to-r from-ice via-ice/90 to-transparent min-[899px]:hidden sm:via-ice/40" />
         </div>
       </div>
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 pb-12 sm:px-6 md:pt-28 lg:pt-28 lg:pb-16">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-24 pb-10 sm:px-6 md:pt-28 lg:pb-16 lg:pt-28">
         <div className="max-w-md sm:max-w-lg lg:max-w-xl">
           <div className="rise-in rise-d1 flex items-center gap-2.5 font-mono text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
             <span className="h-1.5 w-6 bg-green shrink-0" />
@@ -353,6 +352,16 @@ function Hero() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Imagem como banner — apenas mobile/tablet (abaixo de lg) */}
+      <div className="relative z-0 mt-8 border-t-4 border-green lg:hidden">
+        <img
+          src="/eficem/hero.jpg"
+          alt="EFICEM UFSC Joinville — protótipo na pista"
+          className="h-56 w-full object-cover sm:h-72"
+          style={{ objectPosition: "center 42%" }}
+        />
       </div>
     </section>
   );
