@@ -31,7 +31,7 @@ const MAPS_Q = encodeURIComponent("UFSC Campus Joinville, " + ADDRESS);
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "EFICEM UFSC Joinville — Eficiência energética veicular" },
+      { title: "EFICEM UFSC" },
       {
         name: "description",
         content:
