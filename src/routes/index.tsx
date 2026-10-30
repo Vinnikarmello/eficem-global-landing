@@ -37,7 +37,7 @@ export const Route = createFileRoute("/")({
         content:
           "Equipe de eficiência energética veicular da UFSC Joinville. Protótipos elétricos na Shell Eco-marathon. Seja patrocinador.",
       },
-      { property: "og:title", content: "EFICEM UFSC Joinville — Eficiência energética veicular" },
+      { property: "og:title", content: "EFICEM UFSC" },
       {
         property: "og:description",
         content:
